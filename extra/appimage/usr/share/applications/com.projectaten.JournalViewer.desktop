@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.8.4
+Encoding=UTF-8
+Comment=ISIS Journal Viewer
+Exec=jv %f
+GenericName=JournalViewer
+Icon=JournalViewer
+Name=JournalViewer
+StartupNotify=false
+Terminal=0
+Type=Application
+Categories=Science;
+X-SuSE-translate=false

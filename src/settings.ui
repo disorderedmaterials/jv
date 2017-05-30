@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Settings</class>
+ <widget class="QDialog" name="Settings">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>581</width>
+    <height>577</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/jv/icons/jv.svg</normaloff>:/jv/icons/jv.svg</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <property name="spacing">
+    <number>2</number>
+   </property>
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="SettingsTabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="AccessTab">
+      <attribute name="title">
+       <string>Access</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_14">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="DefaultInstrumentGroup">
+         <property name="title">
+          <string>Default Instrument</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="rightMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QComboBox" name="AccessDefaultInstrumentCombo"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="JournalSourceGroup">
+         <property name="title">
+          <string>ISIS Journal Source</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <property name="bottomMargin">
+           <number>4</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QRadioButton" name="AccessDiskOnlyRadio">
+                <property name="text">
+                 <string>&amp;Local Disk Only</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="AccessNetOnlyRadio">
+                <property name="text">
+                 <string>&amp;Network Only</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="AccessDiskAndNetRadio">
+                <property name="text">
+                 <string>Local Disk, &amp;Updated from Net</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QCheckBox" name="AutoReloadCheck">
+                <property name="text">
+                 <string>Auto Reload</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <item>
+                 <widget class="QLabel" name="AutoReloadFrequencyLabel">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Every</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="AutoReloadFrequencySpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mins</string>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Network access is only available on site at RAL, or remotely via staff VPN</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="1" column="0">
+             <widget class="QLabel" name="NetworkSourceLabel">
+              <property name="text">
+               <string>Network Source</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" colspan="2">
+             <widget class="QLineEdit" name="JournalURLEdit"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="JournalDirectoryEdit"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="LocalDirectoryLabel">
+              <property name="text">
+               <string>Local Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="JournalDirectorySelectButton">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="3">
+             <widget class="QCheckBox" name="ForceISOEncoding">
+              <property name="text">
+               <string>Force ISO-8859-1 encoding when reading XML files</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="DataSourceGroup">
+         <property name="title">
+          <string>Data Source</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <property name="bottomMargin">
+           <number>4</number>
+          </property>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="DataDirectoryLabel">
+              <property name="text">
+               <string>Data Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="DataDirectoryEdit"/>
+            </item>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="DataDirectorySelectButton">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="UserDataDirectoryLabel">
+              <property name="text">
+               <string>User Data Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="UserDataDirectoryEdit"/>
+            </item>
+            <item row="1" column="2">
+             <widget class="QToolButton" name="UserDataDirectorySelectButton">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="BlockDataSourceGroup">
+         <property name="title">
+          <string>Block Data Source</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <property name="bottomMargin">
+           <number>4</number>
+          </property>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="BlockLogBeforeNexusRadio">
+              <property name="toolTip">
+               <string>Use log file for block data, in preference to Nexus file</string>
+              </property>
+              <property name="text">
+               <string>Lo&amp;g before Nexus</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="BlockNexusBeforeLogRadio">
+              <property name="toolTip">
+               <string>Use Nexus file for block data, in preference to log file</string>
+              </property>
+              <property name="text">
+               <string>Nexus before Log</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="BlockLogOnlyRadio">
+              <property name="toolTip">
+               <string>Only ever use log file for block data, even if Nexus file exists</string>
+              </property>
+              <property name="text">
+               <string>Log onl&amp;y</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QRadioButton" name="BlockNexusOnlyRadio">
+              <property name="toolTip">
+               <string>Only ever use Nexus file for block data, even if Log file exists</string>
+              </property>
+              <property name="text">
+               <string>Nexus only</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>It is recommended to restart JournalViewer after changing the block data source</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>114</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="ExportTab">
+      <attribute name="title">
+       <string>Export</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QGroupBox" name="AppearanceGroup">
+             <property name="title">
+              <string>Appearance</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <property name="spacing">
+               <number>2</number>
+              </property>
+              <property name="leftMargin">
+               <number>2</number>
+              </property>
+              <property name="topMargin">
+               <number>2</number>
+              </property>
+              <property name="rightMargin">
+               <number>2</number>
+              </property>
+              <property name="bottomMargin">
+               <number>2</number>
+              </property>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="7" column="0" colspan="2">
+                 <widget class="QPushButton" name="StyleHighlightBGColourButton">
+                  <property name="text">
+                   <string>Set Background Colour</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0" colspan="2">
+                 <widget class="QCheckBox" name="StyleHighlightingCheck">
+                  <property name="toolTip">
+                   <string>Whether to highlight alternative rows/groups in generated document</string>
+                  </property>
+                  <property name="text">
+                   <string>Highlighting</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0" colspan="2">
+                 <widget class="QPushButton" name="StyleHighlightTextColourButton">
+                  <property name="text">
+                   <string>Set Text Colour</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QLabel" name="StyleHeaderTextLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Header Text Style</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" colspan="2">
+                 <widget class="QPushButton" name="StyleHeaderBGColourButton">
+                  <property name="text">
+                   <string>Set Background Colour</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="2">
+                 <widget class="QPushButton" name="StyleHeaderTextColourButton">
+                  <property name="text">
+                   <string>Set Text Colour</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0" colspan="2">
+                 <widget class="QLabel" name="StyleHighlightTextLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Highlight Text Style</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="FontGroup">
+             <property name="title">
+              <string>Font</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="1" column="0">
+                 <widget class="QFrame" name="frame">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <item>
+                    <widget class="QLabel" name="DocumentFontLabel">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>JournalViewer</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QFrame" name="frame_3">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QLabel" name="ReportPlotFontLabel">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>JournalViewer</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="SelectDocumentFontButton">
+                  <property name="maximumSize">
+                   <size>
+                    <width>25</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QFrame" name="frame_2">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QLabel" name="PlotFontLabel">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>JournalViewer</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QPushButton" name="SelectPlotFontButton">
+                  <property name="maximumSize">
+                   <size>
+                    <width>25</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QPushButton" name="SelectDocumentPlotFontButton">
+                  <property name="maximumSize">
+                   <size>
+                    <width>25</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QLabel" name="label_8">
+                  <property name="text">
+                   <string>Document</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" colspan="2">
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>Graphs (Run Data)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0" colspan="2">
+                 <widget class="QLabel" name="label_10">
+                  <property name="text">
+                   <string>Graphs (Experiment Reports)</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QGroupBox" name="StyleFormatGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Data Format</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <property name="leftMargin">
+               <number>2</number>
+              </property>
+              <property name="topMargin">
+               <number>2</number>
+              </property>
+              <property name="rightMargin">
+               <number>2</number>
+              </property>
+              <property name="bottomMargin">
+               <number>2</number>
+              </property>
+              <item>
+               <widget class="QRadioButton" name="StyleSimpleListRadio">
+                <property name="text">
+                 <string>Simple &amp;List</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="StyleIndentedListRadio">
+                <property name="text">
+                 <string>I&amp;ndented List</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="GeneralMarginsGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>General Margins</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_6">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Page margins for data saved or printed from the main run list</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="2" column="3">
+                 <widget class="QSpinBox" name="GeneralMarginLeftSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="4">
+                 <widget class="QSpinBox" name="GeneralMarginTopSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="5">
+                 <widget class="QSpinBox" name="GeneralMarginRightSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="4">
+                 <widget class="QSpinBox" name="GeneralMarginBottomSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="ReportMarginsGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Report Margins</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_7">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Page margins for saved or printed reports</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QGridLayout" name="gridLayout_6">
+                <item row="2" column="3">
+                 <widget class="QSpinBox" name="ReportMarginLeftSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="4">
+                 <widget class="QSpinBox" name="ReportMarginTopSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="5">
+                 <widget class="QSpinBox" name="ReportMarginRightSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="4">
+                 <widget class="QSpinBox" name="ReportMarginBottomSpin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="suffix">
+                   <string> mm</string>
+                  </property>
+                  <property name="maximum">
+                   <number>200</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>28</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CloseButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>AutoReloadCheck</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>AutoReloadFrequencyLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>170</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>AutoReloadCheck</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>AutoReloadFrequencySpin</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>337</x>
+     <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

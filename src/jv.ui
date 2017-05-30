@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>JournalViewer</class>
+ <widget class="QMainWindow" name="JournalViewer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>992</width>
+    <height>528</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Journal Viewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/jv/icons/jv.svg</normaloff>:/jv/icons/jv.svg</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QGroupBox" name="DisplayGroup">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Display</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <property name="leftMargin">
+          <number>4</number>
+         </property>
+         <property name="topMargin">
+          <number>4</number>
+         </property>
+         <property name="rightMargin">
+          <number>4</number>
+         </property>
+         <property name="bottomMargin">
+          <number>4</number>
+         </property>
+         <item>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="font">
+              <font>
+               <italic>false</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Instrument</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="DisplayCycleLabel">
+             <property name="font">
+              <font>
+               <italic>false</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Cycle</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="JournalCombo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Cycle / experiment to display</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QToolButton" name="ReloadJournalButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Refresh current journal (Ctrl-R)</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/jv/icons/refresh.svg</normaloff>:/jv/icons/refresh.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="shortcut">
+              <string>Ctrl+R</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QComboBox" name="InstrumentCombo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Instrument to display</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="FilterGroup">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>3</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string>Filter</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <property name="leftMargin">
+          <number>4</number>
+         </property>
+         <property name="topMargin">
+          <number>4</number>
+         </property>
+         <property name="rightMargin">
+          <number>4</number>
+         </property>
+         <property name="bottomMargin">
+          <number>4</number>
+         </property>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <property name="spacing">
+            <number>4</number>
+           </property>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="SearchEdit">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Text string to filter by</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="SearchLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <italic>false</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>Title</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QComboBox" name="FilterUserCombo">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Filter run data by selected user string</string>
+             </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>User</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QComboBox" name="FilterRBCombo">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Filter run data by selected RB number</string>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhDigitsOnly</set>
+             </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="11">
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>to</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QLabel" name="RBNoLabel">
+             <property name="text">
+              <string>RB No.</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="11">
+            <widget class="QLabel" name="label_7">
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>to</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QToolButton" name="SearchClearButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Clear current search text</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/jv/icons/clear.svg</normaloff>:/jv/icons/clear.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="sizeConstraint">
+              <enum>QLayout::SetMaximumSize</enum>
+             </property>
+             <item>
+              <widget class="QComboBox" name="SearchStyleCombo">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Style of text filter</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Text</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wild</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>RegExp</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="SearchCaseSensitiveCheck">
+               <property name="toolTip">
+                <string>Whether text / wildcard searches are case sensitive</string>
+               </property>
+               <property name="text">
+                <string>Case Sensitive</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="7" rowspan="2">
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3" rowspan="2">
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="8">
+            <widget class="QComboBox" name="FilterDateTypeCombo">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Whether time filter select runs that were started in that period, or were just running</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Running</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Started</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="8">
+            <widget class="QLabel" name="label_6">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="text">
+              <string>Run No.</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="10">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QDateTimeEdit" name="FilterFromDateTimeEdit">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="toolTip">
+                <string>Start date / time for time filter</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="FilterFromDateTimeLockButton">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/jv/icons/unlock.svg</normaloff>
+                 <normalon>:/jv/icons/lock.svg</normalon>:/jv/icons/unlock.svg</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="12">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QDateTimeEdit" name="FilterToDateTimeEdit">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="toolTip">
+                <string>End date / time for time filter</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="FilterToDateTimeLockButton">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/jv/icons/unlock.svg</normaloff>
+                 <normalon>:/jv/icons/lock.svg</normalon>:/jv/icons/unlock.svg</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="10">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QSpinBox" name="FilterFromRunSpin">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Start run number for filter</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>10000000</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="FilterFromRunLockButton">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>Lock starting run number filter (persists through journal reloads)</string>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/jv/icons/unlock.svg</normaloff>
+                 <normalon>:/jv/icons/lock.svg</normalon>:/jv/icons/unlock.svg</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="12">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QSpinBox" name="FilterToRunSpin">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>End run number for filter</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="FilterToRunLockButton">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>Lock ending run number filter (persists through journal reloads)</string>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/jv/icons/unlock.svg</normaloff>
+                 <normalon>:/jv/icons/lock.svg</normalon>:/jv/icons/unlock.svg</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="6">
+            <widget class="QToolButton" name="UserSearchClearButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Clear current search text</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/jv/icons/clear.svg</normaloff>:/jv/icons/clear.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="6">
+            <widget class="QToolButton" name="RBSearchClearButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Clear current search text</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/jv/icons/clear.svg</normaloff>:/jv/icons/clear.svg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="DataTable">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::NoDragDrop</enum>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::MultiSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>992</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionFileSaveAsText"/>
+    <addaction name="actionFileSaveAsPDF"/>
+    <addaction name="separator"/>
+    <addaction name="actionFilePrint"/>
+    <addaction name="actionFilePrintSelection"/>
+    <addaction name="separator"/>
+    <addaction name="actionFileQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="actionToolsFind"/>
+    <addaction name="actionToolsFindNext"/>
+    <addaction name="actionToolsFindPrevious"/>
+    <addaction name="separator"/>
+    <addaction name="actionToolsReloadData"/>
+    <addaction name="actionToolsGroupData"/>
+    <addaction name="actionToolsResetFilters"/>
+    <addaction name="actionCancelDownload"/>
+    <addaction name="separator"/>
+    <addaction name="actionToolsRegenerateLocalJournals"/>
+    <addaction name="separator"/>
+    <addaction name="actionToolsCreateExperimentReport"/>
+    <addaction name="actionToolsCreateQuickReport"/>
+    <addaction name="separator"/>
+    <addaction name="actionToolsSettings"/>
+    <addaction name="actionToolsLogWindow"/>
+    <addaction name="separator"/>
+    <addaction name="actionToolsShowLicense"/>
+   </widget>
+   <widget class="QMenu" name="menuSelection">
+    <property name="title">
+     <string>&amp;Selection</string>
+    </property>
+    <addaction name="actionSelectionClear"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectionPlotData"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectionPlotLogfileData"/>
+    <addaction name="actionSelectionPlotNexusData"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectionCopy"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuSelection"/>
+   <addaction name="menuTools"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionFileQuit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionFileLoad">
+   <property name="text">
+    <string>&amp;Load</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionFileSaveAsText">
+   <property name="text">
+    <string>&amp;Save as Text</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionFilePrint">
+   <property name="text">
+    <string>&amp;Print</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionToolsSettings">
+   <property name="text">
+    <string>&amp;Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionToolsReloadData">
+   <property name="text">
+    <string>&amp;Reload Data</string>
+   </property>
+  </action>
+  <action name="actionToolsLogWindow">
+   <property name="text">
+    <string>&amp;Log Window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionFilePrintSelection">
+   <property name="text">
+    <string>P&amp;rint Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionFileSaveAsPDF">
+   <property name="text">
+    <string>S&amp;ave as PDF</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionToolsGroupData">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Group Data</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionToolsResetFilters">
+   <property name="text">
+    <string>Re&amp;set Filters</string>
+   </property>
+  </action>
+  <action name="actionFileSaveAsHTML">
+   <property name="text">
+    <string>Save as &amp;HTML</string>
+   </property>
+  </action>
+  <action name="actionToolsCreateExperimentReport">
+   <property name="text">
+    <string>Create &amp;Experiment Report</string>
+   </property>
+  </action>
+  <action name="actionSelectionPlotData">
+   <property name="text">
+    <string>Plot &amp;Data</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionSelectionPlotLogfileData">
+   <property name="text">
+    <string>Plot &amp;Logfile Data</string>
+   </property>
+  </action>
+  <action name="actionSelectionPlotNexusData">
+   <property name="text">
+    <string>Plot &amp;Nexus Data</string>
+   </property>
+  </action>
+  <action name="actionSelectionCopy">
+   <property name="text">
+    <string>C&amp;opy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionToolsCheckForUpdates">
+   <property name="text">
+    <string>Check for &amp;Updates</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionSelectionClear">
+   <property name="text">
+    <string>&amp;Clear</string>
+   </property>
+  </action>
+  <action name="actionCancelDownload">
+   <property name="text">
+    <string>&amp;Cancel Download</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionToolsRegenerateLocalJournals">
+   <property name="text">
+    <string>Regenerate Local &amp;Journals</string>
+   </property>
+  </action>
+  <action name="actionToolsCreateQuickReport">
+   <property name="text">
+    <string>Create &amp;Quick Report</string>
+   </property>
+  </action>
+  <action name="actionToolsShowLicense">
+   <property name="text">
+    <string>Show L&amp;icense</string>
+   </property>
+  </action>
+  <action name="actionToolsFind">
+   <property name="text">
+    <string>&amp;Find...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionToolsFindNext">
+   <property name="text">
+    <string>Find &amp;Next</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="actionToolsFindPrevious">
+   <property name="text">
+    <string>Find &amp;Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F3</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

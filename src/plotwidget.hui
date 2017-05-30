@@ -1,0 +1,603 @@
+/*
+	*** Data2D Plotting Widget
+	*** src/plotwidget.hui
+	Copyright T. Youngs 2012-2015
+
+	This file is part of JournalViewer.
+
+	JournalViewer is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	JournalViewer is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with JournalViewer.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef JOURNALVIEWER_PLOTWIDGET_H
+#define JOURNALVIEWER_PLOTWIDGET_H
+
+#include <QWidget>
+#include <QObject>
+#include <QTimer>
+#include <QtSvg/QSvgGenerator>
+#include "data2d.h"
+
+// Forward Declarations
+class QMenu;
+class QPushButton;
+class QLabel;
+class PlotData;
+
+// PlotData Group
+class PlotDataGroup : public ListItem<PlotDataGroup>
+{
+	public:
+	// Constructor
+	PlotDataGroup(QString name, QDateTime begin, QDateTime end);
+
+	/*
+	 * Basic Data
+	 */
+	private:
+	// Name of this group
+	QString name_;
+	// Whether this group is visible
+	bool visible_;
+	// Associated PlotData
+	RefList<PlotData,int> dataSets_;
+	// Number of dataSets_ which are currently visible
+	int nDataSetsVisible_;
+	// General colour for this group
+	QColor colour_;
+
+	public:
+	// Return name of this group
+	QString name();
+	// Set availability
+	void setVisible(bool avail);
+	// Return visibility of this group
+	bool visible();
+	// Modify dataset visibility count
+	void changeVisibleCount(bool newDataSetVisibility);
+	// Return number of dataSets_ which are currently visible
+	int nDataSetsVisible();
+	// Set general colour for this group
+	void setColour(QColor colour);
+	// Return general colour for this group
+	QColor colour();
+
+
+	/*
+	 * Run Time
+	 */
+	private:
+	// Begin time and date for run
+	QDateTime runBeginDateTime_;
+	// End time and date for run
+	QDateTime runEndDateTime_;
+	// Stored x axis values for run
+	double runXMin_, runXMax_;
+	// Whether run extends beyond stored xMin_ and xMax_
+	bool runTrueXMin_, runTrueXMax_;	
+	
+	public:
+	// Return start time and date for run
+	QDateTime runBeginDateTime();
+	// Return end time and date for run
+	QDateTime runEndDateTime();
+	// Set x axis minimum for run
+	void setRunXMin(double xmin, bool trueLimit);
+	// Set x axis maximum for run
+	void setRunXMax(double xmax, bool trueLimit);
+	// Return run xMin
+	double runXMin();
+	// Return run xMin true limit
+	double runTrueXMin();
+	// Return xMax
+	double runXMax();
+	// Return xMax true limit
+	double runTrueXMax();
+};
+
+// PlotDataBlock
+class PlotDataBlock : public ListItem<PlotDataBlock>
+{
+	public:
+	// Constructor
+	PlotDataBlock(QString blockName);
+	// Destructor
+	~PlotDataBlock();
+
+	
+	/*
+	 * Pen Styles
+	 */
+	public:
+	// Available line styles
+	enum BlockLineStyle { SolidStyle, DotStyle, DashedStyle, DotDashStyle, nBlockLineStyles };
+
+	private:
+	// Array of line (dash) definitions
+	static QVector<qreal> lineStyles_[nBlockLineStyles];
+
+	/*
+	 * Data
+	 */
+	private:
+	// Name of the block
+	QString blockName_;
+	// Line style
+	PlotDataBlock::BlockLineStyle lineStyle_;
+	// Whether block is visible
+	bool visible_;
+	// List of PlotData that contain this type of plotdata
+	RefList<PlotData,int> data_;
+
+	public:
+	// Return name of block
+	QString blockName();
+	// Set associated line style
+	void setLineStyle(PlotDataBlock::BlockLineStyle style);
+	// Return associated line dash pattern
+	const QVector<qreal>& dashes();
+	// Set visibility of block
+	void setVisible(bool visible);
+	// Return visibility of block
+	bool visible();
+	// Add reference to PlotData
+	void addPlotData(PlotData* pd);
+	// Return list of referenced PlotData
+	const RefList<PlotData,int>& plotData();
+};
+
+// PlotData
+class PlotData : public ListItem<PlotData>
+{
+	public:
+	// Constructor
+	PlotData();
+	// Destructor
+	~PlotData();
+
+
+	/*
+	 * Plot Data
+	 */
+	private:
+	// Data to plot
+	Data2D data_;
+	// Block index (or -1 for no block)
+	int blockIndex_;
+	// QPainterPath of data
+	QPainterPath linePath_, symbolPath_;
+	// Vertical offset to apply to data
+	double verticalOffset_;
+	// End date/time of associated run
+	QDateTime timeMax_;
+	// X range of data
+	double xMin_, xMax_;
+	// Y range of data
+	double yMin_, yMax_;
+	// Data name
+	QString name_;
+	// Parent PlotDataGroup
+	PlotDataGroup* parent_;
+	// Associated PlotDataBlock
+	PlotDataBlock* block_;
+	// Scales used in last path generation
+	double lastXScale_, lastYScale_;
+
+	public:
+	// Set data
+	void setData(PlotDataGroup* parent, Data2D& source, QString runNumber, QDateTime tMax);
+	// Return reference to contained data
+	Data2D& data();
+	// Determine data limits
+	void determineLimits();
+	// Set block
+	void setBlock(PlotDataBlock* block);
+	// Return block
+	PlotDataBlock* block();
+	// Regenerate QPainterPath
+	void generatePainterPaths(double xScale, bool xLogarithmic, double yScale, bool yLogarithmic, bool changesOnly);
+	// Return line QPainterPath
+	QPainterPath& linePath();
+	// Return symbol QPainterPath
+	QPainterPath& symbolPath();
+	// Invalidate painter path, forcing it to be recreated
+	void invalidatePainterPath();
+	// Return whether this data is visible
+	bool visible();
+	// Set vertical offset multiplier
+	void setVerticalOffset(int offset);
+	// Return vertical offset to apply to data
+	double verticalOffset();
+	// Return minimum x value for data
+	double xMin();
+	// Return maximum x value for data
+	double xMax();
+	// Return minimum y value for data
+	double yMin();
+	// Return maximum y value for data
+	double yMax();
+	// Return name
+	QString name();
+	// Return parent
+	PlotDataGroup* parent();
+
+
+	/*
+	 * Data2D Access
+	 */
+	public:
+	// Return runTimeStart from Data2D
+	QDateTime runTimeStart();
+	// Return enumerated Y values from Data2D
+	const RefList<EnumeratedValue,int>& enumeratedY();
+
+
+	/*
+	 * Style Data
+	 */
+	private:
+	// Line Colour
+	QColor lineColour_;
+	// Line Style
+	Qt::PenStyle lineStyle_;
+	
+	public:
+	// Set line colour
+	void setLineColour(QColor color);
+	// Return line colour
+	QColor lineColour();
+	// Set line style
+	void setLineStyle(Qt::PenStyle style);
+	// Return line style
+	Qt::PenStyle lineStyle();
+	// Set supplied pen colour and line style
+	void stylePen(QPen& pen);
+};
+
+/*
+ * PlotWidget
+ */
+class PlotWidget : public QWidget
+{
+	Q_OBJECT
+
+	public:
+	// Constructor
+	PlotWidget(QWidget *parent);
+	// Destructor
+	~PlotWidget();
+
+
+	/*
+	 * Slots / Reimplementations
+	 */
+	private:
+	// Context Menu
+	QMenu* contextMenu_;
+	// Coordinates label (if available)
+	QLabel* coordinatesLabel_;
+
+	protected:
+	// General repaint callback
+	void paintEvent(QPaintEvent* event);
+	// Mouse press event)
+	void mousePressEvent(QMouseEvent*);
+	// Mouse release event)
+	void mouseReleaseEvent(QMouseEvent*);
+	// Mouse move event)
+	void mouseMoveEvent(QMouseEvent*);
+	// Mouse wheel event)
+	void wheelEvent(QWheelEvent*);
+	// Key press event
+	void keyPressEvent(QKeyEvent* event);
+	// Key release event
+	void keyReleaseEvent(QKeyEvent* event);
+
+	public slots:
+	// Context Menu Show All clicked
+	void contextMenuShowAllClicked(bool checked);
+	// Context Menu CopyToClipboard clicked
+	void contextMenuCopyToClipboardClicked(bool checked);
+
+	public:
+	// Set coordinates label
+	void setCoordinatesLabel(QLabel* label);
+
+
+	/*
+	 * Drawing Functions
+	 */
+	private:
+	// Available drawing width / height
+	int areaWidth_, areaHeight_;
+	// General height of text
+	double textHeight_;
+	// Rectangles for axis value labels
+	QRectF xValueRect_, yValueRect_;
+	// Whether to display numerical and/or enumarated Y values
+	bool numericalYAxis_, enumeratedYAxis_;
+	// List of enumerated Y values used in visible data
+	RefList<EnumeratedValue,int> enumeratedYValues_;
+	// Transform matrices for global, local, and data space
+	QTransform globalTransform_, localTransform_, dataTransform_;
+	// Brushes
+	QBrush backgroundBrush_;
+
+	private:
+	// Setup basic drawing area
+	void plotSetup(QPainter& painter);
+	// Draw shaded background
+	void drawShadedBackground(QPainter& painter);
+	// Draw gridlines
+	void drawGridLines(QPainter& painter);
+	// Draw run group period
+	void drawGroupPeriods(QPainter& painter);
+	// Draw data
+	void drawData(QPainter& painter);
+	// Draw selection box
+	void drawSelection(QPainter& painter);
+	// Draw axis tick marks / labels
+	void drawAxes(QPainter& painter);
+	// Draw axis titles
+	void drawTitles(QPainter& painter);
+	// Draw legend
+	void drawLegend(QPainter& painter);
+	// Render plot
+	void renderPlot(QPainter& painter);
+
+	public:
+	// Draw plot on specified QPainter and at specified position
+	void draw(QPainter& painter, QRect boundingRect);
+	// Draw plot on specified image
+	void draw(QImage& image);
+
+
+	/*
+	 * Style
+	 */
+	public:
+	/// Pre-defined Line Colours
+	enum LineColour
+	{
+		BlackColour,
+		RedColour,
+		BlueColour,
+		GreenColour,
+		PurpleColour,
+		OrangeColour,
+		MetallicBlueColour,
+		MintColour,
+		GreyColour,
+		nLineColours
+	};
+
+	private:
+	// Pre-defined colours
+	static QColor lineColours_[PlotWidget::nLineColours];
+	// Background plot colour
+	QColor backgroundColour_;
+	// Foreground pen colour
+	QColor foregroundColour_;
+	// Font for plot
+	QFont font_;
+	// Formatting strings for axis labels
+	QString xLabelFormat_, yLabelFormat_;
+	// Whether datasets represent continuous variation of single property
+	bool singleProperty_;
+	// Whether to shade plot background to represent continuous property value
+	bool shadeBackground_;
+	// Minimum Y limit, outside of which minimumColour is obtained when shading
+	double shadedBackgroundMinimumY_;
+	// Colour at specified minimim Y, if shading background
+	QColor shadedBackgroundMinimumColour_;
+	// Maximum Y limit, outside of which maximumColour is obtained when shading
+	double shadedBackgroundMaximumY_;
+	// Colour at specified maximim Y, if shading background
+	QColor shadedBackgroundMaximumColour_;
+
+	public:
+	// Return nth (wrapped) pre-defined colour
+	static QColor lineColour(int n);
+	// Set single property status
+	void setSingleProperty(bool b);
+	// Set whether to shade background (if single property)
+	void setShadedBackground(bool b);
+	// Set shaded background minimum and colour
+	void setShadedBackgroundMinimum(double value, QColor colour);
+	// Return shaded background minimum value
+	double shadedBackgroundMinimum();
+	// Return shaded background minimum colour
+	QColor shadedBackgroundMinimumColour();
+	// Set shaded background maximum and colour
+	void setShadedBackgroundMaximum(double value, QColor colour);
+	// Return shaded background maximum value
+	double shadedBackgroundMaximum();
+	// Return shaded background maximum colour
+	QColor shadedBackgroundMaximumColour();
+
+
+	/*
+	 * Plot Area
+	 */
+	private:
+	// Drawing area for actual data
+	QRect graphArea_;
+	// Last used drawing area for actual data
+	QRect lastGraphArea_;
+	// X range to display
+	double xMin_, xMax_;
+	// Y range to display
+	double yMin_, yMax_;
+	// Soft limits for X range
+	double xMinLimit_, xMaxLimit_;
+	// Soft limits for Y range
+	double yMinLimit_, yMaxLimit_;
+	// Whether soft limits are enabled
+	bool limitXMin_, limitXMax_, limitYMin_, limitYMax_;
+	// Scaling factors, converting from device to graph
+	double xScale_, yScale_;
+	// Whether axes are logarithmic
+	bool xLogarithmic_, yLogarithmic_;
+	// Last used saling factors
+	double lastXScale_, lastYScale_;
+	// General spacing within graph
+	int spacing_;
+	// Drawing area for X-axis labels, ticks and title
+	QRect xAxisArea_;
+	// Drawing area for Y-axis labels, ticks and title
+	QRect yAxisArea_;
+	// Whether the X axis should use absolute time
+	bool absoluteTime_;
+	// Tick start and delta for x-axis
+	double xAxisTickStart_, xAxisTickDelta_;
+	// Tick start and delta for y-axis
+	double yAxisTickStart_, yAxisTickDelta_;
+	// Main graph title
+	QString mainTitle_;
+	// X axis title
+	QString xAxisTitle_;
+	// Y axis title
+	QString yAxisTitle_;
+	// Whether to show legend
+	bool showLegend_;
+	// Spacing between dataSets (multiplied by verticalOffset())
+	double verticalSpacing_;
+	// Whether to autoscale data on refresh
+	bool autoScale_;
+	// Whether to show begin/end periods for run numbers
+	bool showBeginEnd_;
+	// Whether data should be plotted to assume 'on change' data
+	bool onChangeData_;
+
+	private:
+	// Determine suitable tick deltas based on current graph limits
+	void calculateTickDeltas(int maxTicks);
+
+	public:
+	// Set main title
+	void setMainTitle(QString title);
+	// Set x-axis title
+	void setXAxisTitle(QString title);
+	// Set y-axis title
+	void setYAxisTitle(QString title);
+	// Set x and y axis titles
+	void setTitles(QString mainTitle, QString xTitle, QString yTitle);
+	// Set soft X limits for plot area
+	void setXLimits(bool setMinLimit, bool applyMinLimit, double minLimit, bool setMaxLimit, bool applyMaxLimit, double maxLimit);
+	// Set soft Y limits for plot area
+	void setYLimits(bool setMinLimit, bool applyMinLimit, double minLimit, bool setMaxLimit, bool applyMaxLimit, double maxLimit);
+	// Set whether absolute time should be used on the x axis
+	void setAbsoluteTime(bool on);
+	// Return whether absolute time should be used on the x axis
+	bool absoluteTime();
+	// Set whether begin/end periods are shown
+	void setShowBeginEnd(bool on);
+	// Return whether begin/end periods are shown
+	bool showBeginEnd();
+	// Set whether legend is visible
+	void setShowLegend(bool on);
+	// Return whether legend is visible
+	bool showLegend();
+	// Set whether to assume 'On Change' data
+	void setOnChangeData(bool b);
+	// Return whether to assume 'On Change' data
+	bool onChangeData();
+
+	public slots:
+	// Enable/disable soft x minimum limit
+	void setXMinLimit(bool enabled);
+	// Enable/disable soft x maxiimum limit
+	void setXMaxLimit(bool enabled);
+	// Enable/disable soft y minimum limit
+	void setYMinLimit(bool enabled);
+	// Enable/disable soft y maxiimum limit
+	void setYMaxLimit(bool enabled);
+
+
+	/*
+	 * Extra
+	 */
+	private:
+	// Mouse button state at last mouseDown event
+	Qt::MouseButtons buttons_;
+	// Position of mouseDown event (in widget coordinates)
+	QPoint clickedWidgetPosition_;
+	// Current position of mouse (in widget coordinates)
+	QPoint currentWidgetPosition_;
+	// Position of mouseDown event (in data coordinates)
+	QPointF clickedDataPosition_;
+	// Current position of mouse (in data coordinates)
+	QPointF currentDataPosition_;
+
+
+	/*
+	 * Source Data
+	 */
+	private:
+	// List of dataset groups (i.e. based on RunNumber)
+	List<PlotDataGroup> dataSetGroups_;
+	// Blockname list
+	List<PlotDataBlock> dataSetBlocks_;
+	// Number of visible dataSetGroups_
+	int nDataSetGroupsVisible_;
+	// Number of visible dataSetBlocks_
+	int nDataSetBlocksVisible_;
+	// List of individual datasets
+	List<PlotData> dataSets_;
+	// Earliest time origin over all shown datasets
+	QDateTime absoluteTimeOrigin_;
+
+	public:
+	// Invalidate painter paths for all dataset, forcing their regeneration on next redraw
+	void invalidatePainterPaths();
+	// Create new dataset group
+	PlotDataGroup* addPlotDataGroup(QString name, bool visible, QDateTime start = QDateTime(), QDateTime end = QDateTime());
+	// Return group list
+	const List<PlotDataGroup> dataSetGroups();
+	// Add data to Plot (local Data2D)
+	PlotData* addDataSet(PlotDataGroup* parent, Data2D& data, QString runNumber, QDateTime timeMax, QString blockName = QString(), int yOffset = 0);
+	// Remove all data from plot
+	void removeAllDataSets();
+	// Return dataset list
+	const List<PlotData>& dataSets();
+	// Determine dataset limits
+	void determineDataSetLimits();
+	// Return list of data blocks
+	const List<PlotDataBlock>& dataSetBlocks();
+	// Return named block (if it exists)
+	PlotDataBlock* dataSetBlock(QString name);
+	// Return list of visible data blocks
+	const RefList<PlotDataBlock,int> visibleDataSetBlocks();
+	// Hide all datasets
+	void hideAllDataSets();
+	// Set availability for data from specified group
+	void setGroupVisible(QString runNumber, bool visible);
+	// Show all datasets containing the specified block data
+	void setBlockVisible(QString blockName, bool visible);
+	// Return earliest time origin over all shown datasets
+	QDateTime absoluteTimeOrigin();
+
+
+	/*
+	 * Functions
+	 */
+	public:
+	// Convert widget coordinates to graph coordinates
+	QPointF widgetToGraph(QPoint pos);
+	// Zoom to specified graph coordinates
+	void zoomToGraph(double x1, double y1, double x2, double y2);
+	// Rescale axes to fit current data
+	void fitData(bool obeySoftLimits);
+};
+
+#endif

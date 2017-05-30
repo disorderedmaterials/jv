@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LicenseWindow</class>
+ <widget class="QDialog" name="LicenseWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>466</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>License</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/jv/icons/jv.svg</normaloff>:/jv/icons/jv.svg</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QPlainTextEdit" name="LicenseBrowser">
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="undoRedoEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string>By installing and using JournalViewer  you agree to be bound by the terms of both the GNU Lesser General Public License (Section A below) and the ISIS Data Policy (Section B below)
+
+A. GNU LESSER GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. http://fsf.org/. Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+This version of the GNU Lesser General Public License incorporates the terms and conditions of version 3 of the GNU General Public License, supplemented by the additional permissions listed below.
+
+0. Additional Definitions.
+As used herein, &quot;this License&quot; refers to version 3 of the GNU Lesser General Public License, and the &quot;GNU GPL&quot; refers to version 3 of the GNU General Public License.
+&quot;The Library&quot; refers to a covered work governed by this License, other than an Application or a Combined Work as defined below.
+An &quot;Application&quot; is any work that makes use of an interface provided by the Library, but which is not otherwise based on the Library. Defining a subclass of a class defined by the Library is deemed a mode of using an interface provided by the Library.
+A &quot;Combined Work&quot; is a work produced by combining or linking an Application with the Library.  The particular version of the Library with which the Combined Work was made is also called the &quot;Linked Version&quot;.
+The &quot;Minimal Corresponding Source&quot; for a Combined Work means the Corresponding Source for the Combined Work, excluding any source code for portions of the Combined Work that, considered in isolation, are based on the Application, and not on the Linked Version.
+The &quot;Corresponding Application Code&quot; for a Combined Work means the object code and/or source code for the Application, including any data and utility programs needed for reproducing the Combined Work from the Application, but excluding the System Libraries of the Combined Work.
+
+1. Exception to Section 3 of the GNU GPL.
+You may convey a covered work under sections 3 and 4 of this License without being bound by section 3 of the GNU GPL.
+
+2. Conveying Modified Versions.
+If you modify a copy of the Library, and, in your modifications, a facility refers to a function or data to be supplied by an Application that uses the facility (other than as an argument passed when the facility is invoked), then you may convey a copy of the modified version:
+a) under this License, provided that you make a good faith effort to ensure that, in the event an Application does not supply the function or data, the facility still operates, and performs whatever part of its purpose remains meaningful, or
+b) under the GNU GPL, with none of the additional permissions of this License applicable to that copy.
+
+3. Object Code Incorporating Material from Library Header Files.
+The object code form of an Application may incorporate material from a header file that is part of the Library.  You may convey such object code under terms of your choice, provided that, if the incorporated material is not limited to numerical parameters, data structure layouts and accessors, or small macros, inline functions and templates (ten or fewer lines in length), you do both of the following:
+a) Give prominent notice with each copy of the object code that the Library is used in it and that the Library and its use are covered by this License.
+b) Accompany the object code with a copy of the GNU GPL and this license document.
+
+4. Combined Works.
+You may convey a Combined Work under terms of your choice that, taken together, effectively do not restrict modification of the portions of the Library contained in the Combined Work and reverse engineering for debugging such modifications, if you also do each of the following:
+a) Give prominent notice with each copy of the Combined Work that the Library is used in it and that the Library and its use are covered by this License.
+b) Accompany the Combined Work with a copy of the GNU GPL and this license document.
+c) For a Combined Work that displays copyright notices during execution, include the copyright notice for the Library among these notices, as well as a reference directing the user to the copies of the GNU GPL and this license document.
+d) Do one of the following:
+0) Convey the Minimal Corresponding Source under the terms of this License, and the Corresponding Application Code in a form suitable for, and under terms that permit, the user to recombine or relink the Application with a modified version of the Linked Version to produce a modified Combined Work, in the manner specified by section 6 of the GNU GPL for conveying Corresponding Source.
+1) Use a suitable shared library mechanism for linking with the Library.  A suitable mechanism is one that (a) uses at run time a copy of the Library already present on the user's computer system, and (b) will operate properly with a modified version of the Library that is interface-compatible with the Linked Version.
+e) Provide Installation Information, but only if you would otherwise be required to provide such information under section 6 of the GNU GPL, and only to the extent that such information is necessary to install and execute a modified version of the Combined Work produced by recombining or relinking the Application with a modified version of the Linked Version. (If you use option 4d0, the Installation Information must accompany the Minimal Corresponding Source and Corresponding Application Code. If you use option 4d1, you must provide the Installation Information in the manner specified by section 6 of the GNU GPL for conveying Corresponding Source.)
+
+5. Combined Libraries.
+You may place library facilities that are a work based on the Library side by side in a single library together with other library facilities that are not Applications and are not covered by this License, and convey such a combined library under terms of your choice, if you do both of the following:
+a) Accompany the combined library with a copy of the same work based on the Library, uncombined with any other library facilities, conveyed under the terms of this License.
+b) Give prominent notice with the combined library that part of it is a work based on the Library, and explaining where to find the accompanying uncombined form of the same work.
+
+6. Revised Versions of the GNU Lesser General Public License.
+The Free Software Foundation may publish revised and/or new versions of the GNU Lesser General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.
+Each version is given a distinguishing version number. If the Library as you received it specifies that a certain numbered version of the GNU Lesser General Public License &quot;or any later version&quot; applies to it, you have the option of following the terms and conditions either of that published version or of any later version published by the Free Software Foundation.
+If the Library as you received it does not specify a version number of the GNU Lesser General Public License, you may choose any version of the GNU Lesser General Public License ever published by the Free Software Foundation.
+If the Library as you received it specifies that a proxy can decide whether future versions of the GNU Lesser General Public License shall apply, that proxy's public statement of acceptance of any version is permanent authorization for you to choose that version for the Library.
+
+B. ISIS Data Policy
+Retrieved 20/04/2015 from http://www.isis.stfc.ac.uk/user-office/data-policy11204.html
+
+1. General principles
+1.1 This data management policy pertains to the curation of and access to experimental raw data and metadata collected and / or stored at the ISIS facility.
+1.2 Acceptance of this policy is a condition of the award of beamtime at ISIS.
+1.3 Users must not attempt to access, exploit or distribute raw data or metadata unless they are entitled to do so under the terms of this policy.
+1.4 Deliberate infringements of the policy may lead to denial of access to ISIS raw data or metadata.
+
+2. Definitions 
+For the purposes of this policy:
+2.1 &quot;raw data&quot; are data collected from experiments performed on ISIS instruments.  This definition includes data that are created automatically or manually by Facility-specific software and/or ISIS staff expertise in order to facilitate subsequent analysis of the experimental data, unless otherwise agreed.
+2.2 &quot;metadata&quot; is information pertaining to data collected from experiments performed on ISIS instruments, including (but not limited to) the context of the experiment, the experimental team (in accordance with the Data Protection Act), experimental conditions and other logistical information.
+2.3 the term &quot;principal investigator&quot; (PI) pertains to the PI identified on the ISIS experiment proposal.
+2.4 the term &quot;experimental team&quot; includes the PI and any other person to whom the PI designates the right to access resultant raw data and associated metadata.
+2.5 the term &quot;on-line catalogue&quot; pertains to a computer database of metadata containing links to raw data files, that can be accessed by a variety of methods, including (but not limited to) www-based browsers.
+2.6 the term &quot;results&quot; pertains to data, intellectual property, and outcomes arising from the analysis of raw data.
+2.7 the term &quot;long-term&quot; means a minimum of ten years.
+2.8 the term &quot;public domain&quot; means belonging to the community at large, unprotected by copyright or patent and subject to appropriation by anyone.
+
+3. Raw data and associated metadata
+3.1 Free and commercial access to ISIS
+3.1.1 All raw data and the associated metadata obtained as a result of free (non-commercial) access to ISIS, reside in the public domain, with ISIS acting as the custodian.
+3.1.2 All raw data and the associated metadata obtained as a result of &quot;commercial-in-confidence&quot; access to ISIS will be owned exclusively by the commercial user.  Commercial users must agree with their relevant instruments scientists how they wish their raw data and metadata to be managed before the start of any experiment.
+3.2 Curation of raw data and associated metadata
+3.2.1 All raw data will be curated in well-defined formats, for which the means of reading the data will be made available by the Facility.
+3.2.2 Metadata that is automatically captured by instruments will be curated either within the raw data files, within an associated on-line catalogue, or within both.
+3.2.3 Data will be stored initially on instrument-related computers, and will be migrated or copied to archival facilities for long-term curation.
+3.3 Access to raw data and metadata
+.3.1 Access to raw data and metadata beyond the period that it is stored on instrument-related computers will be via a searchable on-line catalogue.
+3.3.2 Access to the on-line catalogue will be restricted to those who register with STFC/ISIS as users of the on-line catalogue.
+3.3.3 Access to raw data and the associated metadata obtained from an experiment is restricted to the experimental team for a period of three years after the end of the experiment. Thereafter, it will become publicly accessible. Any PI that wishes their data to remain &quot;restricted access&quot; for a longer period will be required to make a special case to the Director of ISIS.
+3.3.4 It is the responsibility of the PI to ensure that the experiment number (RB number) is correctly entered into the metadata for each raw data set, in order to correctly associate each data set with the PI.  If this is not done, the experimental team will not be able to access the data via the on-line catalogue and other users may inadvertently be given access rights to the data.
+3.3.5 Appropriate STFC staff (e.g. instrument scientists, computing group members) may be given access to any Facility-curated data or metadata for Facility-related purposes. ISIS undertakes that they will preserve the confidentiality of such data.
+3.3.6 The on-line catalogue will enable the linking of experimental data to experimental proposals.  Access to proposals will only ever be provided to the experimental team and appropriate STFC staff, unless otherwise authorized by the PI. 
+
+4. Results
+4.1 Ownership of results
+4.1.1 Ownership of all results derived from the analysis of the raw data is determined by the contractual obligations of the person(s) performing the analysis.
+4.2 Curation of results
+4.2.1 ISIS will provide a facility for users to upload results and associated metadata to the facility and enable them to associate these results with raw data collected from the Facility.
+4.2.2 The upload of results and metadata are subject to volume restrictions.
+4.2.3 These results will be stored long-term by the Facility.  It will not be the responsibility of the Facility to fully curate this data e.g. to ensure that software to read / manipulate this data is available.
+4.3 Access to results
+4.3.1 Access to the results of analyses performed on raw data and metadata is restricted to the person or persons performing the analyses, unless otherwise requested by those persons.
+
+5. Good practice for metadata capture and results storage
+5.1 The experimental team is encouraged to ensure that experimental metadata are as complete as possible, as this will enhance the possibilities for them to search for, retrieve and interpret their own data in the future.
+5.2 ISIS undertakes to provide facilities for the capture of such metadata items that are not automatically captured by an instrument, in order to facilitate recording the fullest possible description of the raw data.
+5.3 Researchers who aim to carry out analyses of raw data and metadata which are publicly accessible should, where possible, contact the original PI to inform them and suggest a collaboration if appropriate.
+5.4 PIs and researchers who carry out analyses of raw data and metadata are encouraged to link the results of these analyses with the raw data / metadata using the facilities provided by the on-line catalogue.  Furthermore, they are encouraged to make such results publicly accessible.
+
+6. Publication information
+6.1 References for publications related to experiments carried out at ISIS must be deposited in the STFC e-Pubs system http://epubs.cclrc.ac.uk/ within six months of the publication date, or during any new application for beamtime, whichever is the earlier.
+
+</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="AcceptButton">
+       <property name="text">
+        <string>Accept</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="RejectButton">
+       <property name="text">
+        <string>Reject</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

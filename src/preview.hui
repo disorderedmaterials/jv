@@ -1,0 +1,60 @@
+/*
+	*** Preview Widget
+	*** src/preview.hui
+	Copyright T. Youngs 2012-2015
+
+	This file is part of JournalViewer.
+
+	JournalViewer is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	JournalViewer is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with JournalViewer.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef JOURNALVIEWER_PREVIEW_H
+#define JOURNALVIEWER_PREVIEW_H
+
+#include "document.h"
+#include <QWidget>
+
+// Forward Declarations
+/* none */
+
+// Preview
+class Preview : public QWidget
+{
+	Q_OBJECT
+
+	public:
+	// Constructor
+	Preview(QWidget *parent);
+	// Destructor
+	~Preview();
+
+
+	private:
+	// Preview Document
+// 	Document document_;
+
+	public:
+	// Return Document
+// 	Document& document();
+
+
+	/*
+	 * Slots / Reimplementations
+	 */
+	protected:
+	// General repaint callback
+	void paintEvent(QPaintEvent* event);
+};
+
+#endif

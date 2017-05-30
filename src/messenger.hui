@@ -1,0 +1,62 @@
+/*
+	*** Messenger
+	*** src/messenger.hui
+	Copyright T. Youngs 2012-2015
+
+	This file is part of JournalViewer.
+
+	JournalViewer is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	JournalViewer is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with JournalViewer.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef JOURNALVIEWER_MESSENGER_H
+#define JOURNALVIEWER_MESSENGER_H
+
+#include <QObject>
+
+// Forward Declarations
+class QTextBrowser;
+
+class Messenger : public QObject
+{
+	Q_OBJECT
+	
+	public:
+	// Constructor
+	Messenger();
+
+	private:
+	// Target QTextBrowser for display
+	QTextBrowser* textBrowser_;
+	// Whether to redirect all output to stdout
+	bool toStdout_;
+
+	public:
+	// Set target QTextBrowser
+	void setTextBrowser(QTextBrowser* tb);
+	// Set whether to redirect all output to stdout
+	void setToStdout(bool b);
+	// Display message
+	void print(QString text);
+        // Construct and display message
+        void print(const char*, ...);
+ 
+	signals:
+	// Print text
+	void displayText(QString text);
+};
+
+// External declaration
+extern Messenger msg;
+
+#endif

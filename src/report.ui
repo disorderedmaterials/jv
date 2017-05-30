@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReportGenerator</class>
+ <widget class="QDialog" name="ReportGenerator">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>474</width>
+    <height>322</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create Experiment Report</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/jv/icons/jv.svg</normaloff>:/jv/icons/jv.svg</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_16">
+   <item>
+    <widget class="QTabWidget" name="TabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="ExperimentTab">
+      <attribute name="title">
+       <string>Experiment</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="margin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="RBGroup">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>RB Number</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <property name="margin">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QComboBox" name="RBCombo">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ExperimentDetailsGroup">
+         <property name="title">
+          <string>Experiment Details</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <property name="margin">
+           <number>2</number>
+          </property>
+          <item>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Start Date</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="UserCombo">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="editable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>User</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>End Date</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="EndDateLabel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="StartDateLabel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>NRuns</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLabel" name="NRunsLabel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="PartCheck">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Part</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QSpinBox" name="PartNSpin">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="PartLabel">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>of</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="NPartsSpin">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimum">
+                 <number>2</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_8">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>90</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="InstrumentInfoTab">
+      <attribute name="title">
+       <string>Instrument Information</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="margin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="InfoSourceGroup">
+         <property name="title">
+          <string>Source</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <property name="bottomMargin">
+           <number>4</number>
+          </property>
+          <item>
+           <widget class="QRadioButton" name="RunInformationRadio">
+            <property name="text">
+             <string>Run Information</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="RunInformationCombo"/>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="CurrentSECIRadio">
+            <property name="text">
+             <string>Current SECI Values</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ReloadButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/jv/icons/refresh.svg</normaloff>:/jv/icons/refresh.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Blocks selected here will appear in the header of the report.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTreeWidget" name="BlockTree">
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="RunDataTab">
+      <attribute name="title">
+       <string>Run Data</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="margin">
+        <number>4</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Available Properties</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="AvailablePropertiesList">
+           <property name="showDropIndicator" stdset="0">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="AddPropertyButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/jv/icons/right.svg</normaloff>:/jv/icons/right.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="RemovePropertyButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/jv/icons/left.svg</normaloff>:/jv/icons/left.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Displayed Properties</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="VisiblePropertiesList">
+           <property name="showDropIndicator" stdset="0">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QToolButton" name="MovePropertyUpButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/jv/icons/up.svg</normaloff>:/jv/icons/up.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="MovePropertyDownButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/jv/icons/down.svg</normaloff>:/jv/icons/down.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="AnalysisTab">
+      <attribute name="title">
+       <string>Analysis</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <property name="margin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="AnalyseRunsCheck">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Adds a section containing various statistics for the selected experiment, such as total beam current utilised, total beam current available etc.</string>
+         </property>
+         <property name="text">
+          <string>Run Statistics</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item row="4" column="4">
+          <widget class="QDoubleSpinBox" name="ModeratorCH4MaximumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>41.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>to</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="AnalyseHModeratorCheck">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Include data on the selected TS2 moderator temperatures</string>
+           </property>
+           <property name="text">
+            <string>Hydrogen Moderator</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="QDoubleSpinBox" name="ModeratorH2MaximumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>19.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QDoubleSpinBox" name="TS2BeamMinimumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>25.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="AnalyseCH4ModeratorCheck">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Include data on the selected TS2 moderator temperatures</string>
+           </property>
+           <property name="text">
+            <string>Methane Moderator</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QDoubleSpinBox" name="ModeratorH2MinimumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>16.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>TS1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QDoubleSpinBox" name="ModeratorCH4MinimumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>37.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>to</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="7">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>TS2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="7">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>TS2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>uA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="5">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>K</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="7">
+          <widget class="QLabel" name="label_41">
+           <property name="text">
+            <string>TS2</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="5">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>K</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Warn</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QDoubleSpinBox" name="TS1BeamMinimumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>140.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>uA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>to</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" colspan="3">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Acceptable Range</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="AnalyseBeamCurrentCheck">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Include analysis of proton beam current over the course of the experiment</string>
+           </property>
+           <property name="text">
+            <string>Beam Current</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>to</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QDoubleSpinBox" name="TS1BeamMaximumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>170.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QDoubleSpinBox" name="TS2BeamMaximumSpin">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>50.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QCheckBox" name="BeamRangeWarningCheck">
+           <property name="toolTip">
+            <string>If checked, values outside of the acceptable range will be highlighted on the graph</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>OC?</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="6">
+          <widget class="QCheckBox" name="ModeratorH2RangeWarningCheck">
+           <property name="toolTip">
+            <string>If checked, values outside of the acceptable range will be highlighted on the graph</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="6">
+          <widget class="QCheckBox" name="ModeratorCH4RangeWarningCheck">
+           <property name="toolTip">
+            <string>If checked, values outside of the acceptable range will be highlighted on the graph</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="BeamOnChangeCheck">
+           <property name="toolTip">
+            <string>If checked, data values are assumed to have been logged only on a change of the value, rather than at regular timesteps</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="ModeratorH2OnChangeCheck">
+           <property name="toolTip">
+            <string>If checked, data values are assumed to have been logged only on a change of the value, rather than at regular timesteps</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QCheckBox" name="ModeratorCH4OnChangeCheck">
+           <property name="toolTip">
+            <string>If checked, data values are assumed to have been logged only on a change of the value, rather than at regular timesteps</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="SetAsDefaultButton">
+       <property name="text">
+        <string>Set as Default</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PrintButton">
+       <property name="text">
+        <string>Print</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="SaveAsPDFButton">
+       <property name="text">
+        <string>Save as PDF</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>RunInformationRadio</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>RunInformationCombo</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>39</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>58</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

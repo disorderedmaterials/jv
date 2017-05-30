@@ -1,0 +1,44 @@
+/*
+	*** TReplyTimeout - Network reply timeout handler
+	*** src/treplytimeout.uih
+	Copyright T. Youngs 2012-2015
+
+	This file is part of JournalViewer.
+
+	JournalViewer is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	JournalViewer is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with JournalViewer.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#ifndef JV_TREPLYTIMEOUT_H
+#define JV_TREPLYTIMEOUT_H
+
+#include <QObject> 
+
+// Foward Declarations
+class QNetworkReply;
+
+// Network Reply Timeout Class
+// Based on / Copied from code at http://codereview.stackexchange.com/questions/30031/qnetworkreply-network-reply-timeout-helper
+class TReplyTimeout : public QObject
+{
+	Q_OBJECT
+
+	public:
+	// Constructor
+	TReplyTimeout(QNetworkReply* reply, const int timeout);
+
+	private slots:
+	void timeout();
+};
+
+#endif

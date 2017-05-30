@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.8.4
+Encoding=UTF-8
+Comment=JournalViewer
+Exec=jv
+GenericName=JournalViewer
+Icon=/usr/share/pixmaps/JournalViewer.png
+Name=JournalViewer
+StartupNotify=false
+Terminal=0
+Type=Application
+Categories=Applications
