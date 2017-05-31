@@ -72,11 +72,6 @@ if(WIN32)
 	# Request C++11 Standard Support (Required for Qt 5.7)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-	# Set SZIP location
-	set(SZIP_DIR "C:/Users/axr61803/src/szip_build")
-	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/Users/axr61803/src/szip_build")
-	find_package(SZIP REQUIRED)
-
 	# Find ZLib
 	set(ZLIB_ROOT "C:/Users/axr61803/src/zlib_build")
 	set(ZLIB_INCLUDE_DIR "C:/Users/axr61803/src/zlib-1.2.5")
@@ -85,8 +80,9 @@ if(WIN32)
 	# HDF5 support?
 	if(USE_HDF)
 		set(HDF5_DIR "C:/Users/axr61803/src/hdf5_build")
-		set(HDF5_INCLUDE_DIRS "C:/Users/axr61803/src/hdf5-1.8.14/src")
-		set(HDF5_LIBS "-LC:/Users/axr61803/src/hdf5_build/bin -lhdf5 -L${SZIP_DIR}/bin -lszip" CACHE STRING "Link-time commands to use HDF5 (Windows only)")
+		set(HDF5_TOOLS_DIR "C:/Users/axr61803/src/hdf5_build/bin")
+		set(HDF5_INCLUDE_DIRS "C:/Users/axr61803/src/hdf5-1.10.1/src;C:/Users/axr61803/src/hdf5_build")
+		set(HDF5_LIBS "-LC:/Users/axr61803/src/hdf5_build/bin -lhdf5-static" CACHE STRING "Link-time commands to use HDF5 (Windows only)")
 	endif(USE_HDF)
 
 	# Add global NOMINMAX define for Windows systems, and inhibit console creation
@@ -130,7 +126,11 @@ find_package(Qt5Network REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Svg REQUIRED)
 if(USE_HDF)
-	find_package(HDF5 REQUIRED)
+	if(WIN32)
+	FIND_PACKAGE(HDF5 COMPONENTS C HL NO_MODULE REQUIRED shared)
+	else(WIN32)
+		find_package(HDF5 REQUIRED)
+	endif(WIN32)
 	find_package(ZLIB REQUIRED)
 endif(USE_HDF)
 
