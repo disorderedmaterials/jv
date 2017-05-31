@@ -1,9 +1,9 @@
-Notes for building on OpenSuSE LEAP 42.1
+Notes for building on OpenSuSE LEAP 42.2
 ========================================
 
 Packaging
 ---------
-The package spec file is stored in extra/LEAP42.1.
+The package spec file is stored in extra/LEAP42.2.
 
 First, create a heirarchy of build dirs:
 
@@ -11,7 +11,7 @@ bob@pc:~> mkdir -p rpm/BUILD rpm/BUILDROOT rpm/RPMS rpm/SRPMS rpm/SOURCES
 
 Copy the spec file to the rpm directory:
 
-bob@pc:~> cp extra/LEAP42.1/jv.spec ./rpm
+bob@pc:~> cp extra/LEAP42.2/jv.spec ./rpm
 
 You now need to get/make a tardist of the source and place in rpm/SOURCES
 
