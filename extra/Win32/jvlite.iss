@@ -8,9 +8,9 @@
 #define MyAppExeName "JournalViewerLite.exe"
 
 ; Locations of bin directories of Qt, GnuWin(32), and MinGW(32)
-#define QtDir "C:\Qt\5.7.0\5.7\mingw53_32"
+#define QtDir "C:\Qt\5.8\mingw53_32"
 #define GnuWinDir "C:\GnuWin32"
-#define MinGWDir "C:\Qt\5.7.0\Tools\mingw530_32"
+#define MinGWDir "C:\Qt\Tools\mingw530_32"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -58,7 +58,7 @@ Source: "{#QtDir}\bin\Qt5PrintSupport.dll"; DestDir: "{app}"; Flags: ignoreversi
 Source: "{#QtDir}\plugins\iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
 Source: "{#QtDir}\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
 Source: "{#QtDir}\plugins\imageformats\*.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "C:\Users\axr61803\src\hdf5_build\bin\hdf5.dll"; DestDir: "{app}"
+; Source: "C:\Users\axr61803\src\hdf5_build\bin\hdf5.dll"; DestDir: "{app}"
 Source: "JournalViewerLite.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
