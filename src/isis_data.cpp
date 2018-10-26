@@ -40,6 +40,7 @@ InstrumentInfo ISIS::instruments_[] = {
 	{ "INES", 	"INS", 		TS1 },
 	{ "INTER",	"INTER",	TS2 },
 	{ "IRIS", 	"IRS", 		TS1 },
+	{ "IRIS_SET", 	"IRS", 		TS1,	"ndxiris", "IRIS_SETUP" },
 	{ "LARMOR", 	"LARMOR", 	TS2 },
 	{ "LET",	"LET", 		TS2 },
 	{ "LOQ",	"LOQ", 		TS2 },
