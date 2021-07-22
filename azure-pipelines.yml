@@ -9,12 +9,12 @@ trigger:
 jobs:
   - job: Windows
     strategy:
-    matrix:
-    windows:
-    imageName: 'windows-latest'
+        matrix:
+        windows:
+            imageName: 'windows-latest'
 
     pool:
-    vmImage: windows-latest
+        vmImage: windows-latest
     steps:
       - checkout: self
         submodules: true
