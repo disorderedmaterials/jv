@@ -7,6 +7,6 @@ trigger:
 jobs:
 - job: Windows
   pool:
-    vmImage: 'vwindows-latest'
+    vmImage: 'vs2017-win2016'
   steps:
   - template: templates/windows.yml
