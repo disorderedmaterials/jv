@@ -10,8 +10,3 @@ jobs:
     vmImage: 'vwindows-latest'
   steps:
   - template: templates/windows.yml
-- job: Linux
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - template: templates/linux.yml
