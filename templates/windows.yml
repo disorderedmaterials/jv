@@ -7,6 +7,7 @@ steps:
   - script: |
       cd $(Build.SourcesDirectory)
       python -m pip install aqtinstall
+      python -m pip install cmake
     displayName: 'Install aqtinstall'
   # 1
   - script: |
@@ -18,8 +19,8 @@ steps:
   - script: |
       cd $(Build.SourcesDirectory)
       call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars32.bat"
-      $(Build.BinariesDirectory)\\Qt\\5.14.1\\msvc2017\\bin\\qmake.exe
-    displayName: 'Run qmake'
+      $(Build.BinariesDirectory)\\Qt\\5.14.1\\msvc2017\\bin\\cmake.exe 
+    displayName: 'Run cmake'
   # 3
   - script: |
       cd $(Build.SourcesDirectory)
