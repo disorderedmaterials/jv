@@ -8,11 +8,6 @@ trigger:
 
 jobs:
   - job: Windows
-    strategy:
-      matrix:
-      windows:
-        imageName: 'windows-latest'
-
     pool:
       vmImage: windows-latest
     steps:
