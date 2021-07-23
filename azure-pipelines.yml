@@ -13,7 +13,7 @@ pr: none
     
 jobs:
   - job: 'windows'
-    displayName: 'Windows build initiator'
+    displayName: 'Windows test'
     timeoutInMinutes: 120
     pool:
       vmImage: 'windows-latest' 
