@@ -8,6 +8,7 @@ trigger:
     - src/*
     - extra/*
     - CMakeLists.txt
+    - templates/*
 
 pr: none
     
@@ -20,4 +21,4 @@ jobs:
     steps:
       - checkout: self
         fetchDepth: 1
-      - template: templates/windows.yml
+      - template: windows.yml
