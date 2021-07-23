@@ -13,7 +13,6 @@ pr: none
     
 jobs:
   - job: 'windows'
-    displayName: 'Windows test'
     timeoutInMinutes: 120
     pool:
       vmImage: 'windows-latest' 
@@ -21,4 +20,4 @@ jobs:
       - checkout: self
         fetchDepth: 1
       - template: templates/windows.yml
-        displayName: 'Publish Windows Artifacts'
+    displayName: 'Publish Windows Artifacts'
