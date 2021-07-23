@@ -3,10 +3,22 @@ trigger:
     include:
     - master
     - refs/tags/*
+  paths:
+    include:
+    - src/*
+    - extra/*
+    - CMakeLists.txt
+
+pr: none
     
 jobs:
-- job: Windows
-  pool:
-    vmImage: 'vs2017-win2016'
-  steps:
-  - template: templates/windows.yml
+- job: 'windows'
+    displayName: 'Windows, Threads, CLI/GUI'
+    timeoutInMinutes: 120
+    pool:
+        vmImage: 'windows-latest' 
+    steps:
+        - checkout: self
+        fetchDepth: 1
+        - template: templates/windows.yml
+        displayName: 'Publish Windows Artifacts'
