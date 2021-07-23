@@ -3,6 +3,8 @@ parameters:
     default: ''
   - name: qtver
     default: 5.15.1
+  - name: threading
+    default: true
 
 steps:
   - task: UsePythonVersion@0
