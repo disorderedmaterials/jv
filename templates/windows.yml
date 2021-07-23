@@ -1,59 +1,35 @@
+parameters:
+  - name: extraflags
+    default: ''
+  - name: qtver
+    default: 5.15.1
+
 steps:
-  - checkout: self
-    submodules: true
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
   - script: |
-      cd $(Build.SourcesDirectory)
+      choco install -y antlr4
+    displayName: 'Install Prerequisites'
+  - script: |
       python -m pip install aqtinstall
-      python -m pip install cmake
-    displayName: 'Install aqtinstall'
-  # 1
-  - script: |
-      cd $(Build.SourcesDirectory)
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt 5.14.1 windows desktop win32_msvc2017 -m qtcore qtgui qtxml qtdeclarative qtquickcontrols2
-      echo "Installing Qt to $(Build.SourcesDirectory)"
-    displayName: 'Install Qt 5.14.1'
-  # 2
-  - script: |
-      cd $(Build.SourcesDirectory)
-      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars32.bat"
-      python -m cmake -- build
-    displayName: 'Run cmake'
-  # 3
-  - script: |
-      cd $(Build.SourcesDirectory)
-      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars32.bat"
-      nmake release
-    displayName: 'Build!'
-  # 4
-  - script: |
-      cd $(Build.SourcesDirectory)
-      call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars32.bat"
-      echo "Creating deploy directory"
-      mkdir app\\deploy
-      copy app\\release\\HL3.exe app\\deploy\\HL3.exe
-      dir $(Build.BinariesDirectory)\\Qt\\5.14.1\\msvc2017\\bin
-      echo "Running windeployqt"
-      $(Build.BinariesDirectory)\\Qt\\5.14.1\\msvc2017\\bin\\windeployqt.exe --qmldir app\\src\\qml app\\deploy\\HL3.exe
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-    displayName: 'Deploy'
-  # 5
-  - script: |
-      cd $(Build.SourcesDirectory)
-      set HL3DeployDir=$(Build.SourcesDirectory)\\app\\deploy
-      for /f "usebackq tokens=*" %%a in (`git describe --exact-match --tags $(Build.SourceVersion)`) do set HL3Version=%%a
-      iscc /Qp ci\\innosetup_script.iss"
-      echo "Listing ci directory"
-      dir ci
-      echo "Listing ci/Output directory"
-      dir "ci\\Output"
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-    displayName: 'Run Innosetup'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathToPublish: $(Build.SourcesDirectory)\\ci\\Output\\HL3Setup.exe
-      artifactName: Windows_release
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-    displayName: 'Publish Release Installer'
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_msvc2019_64 -m qtcore qtgui qtwidgets qtprintsupport
+    displayName: 'Install Qt'
+  - powershell: |
+      python -m pip install conan
+      conan profile new default --detect
+      conan profile update settings.compiler="Visual Studio" default
+      conan profile update settings.compiler.version=16 default
+    displayName: 'Install Conan' 
+  - powershell: |
+      $ErrorActionPreference = 'Stop'
+      $env:Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\msvc2019_64"
+      $env:PATH += ";$env:Qt5_DIR" + "\bin"
+      echo $env:Qt5_DIR
+      mkdir build
+      cd build
+      conan install .. --build missing
+      cmake ../ -G "Visual Studio 16 2019" -A "x64" -DMULTI_THREADING:bool=${{ parameters.threading }} -DGUI:bool=true -DBUILD_ANTLR_RUNTIME:bool=true -DBUILD_ANTLR_LINK_LIB:string="dist\Release\antlr4-runtime.lib" -DCMAKE_BUILD_TYPE:STRING="Release" ${{ parameters.extraflags }}
+      cmake --build . --config Release --target keywordwidgets
+      cmake --build . --config Release
+    displayName: 'Build'
