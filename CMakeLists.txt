@@ -49,64 +49,54 @@ if(LITE)
 	add_definitions(-DLITE)
 endif(LITE)
 
-# Options
-# -- HDF5 Support
-OPTION(USE_HDF "Include HDF5 support to read NEXUS files" ON)
-if(NOT USE_HDF)
-	ADD_DEFINITIONS("-DNOHDF")
-endif(NOT USE_HDF)
+include(ExternalProject)
 
-# Platform-specific configuration
+# Build SZIP as an external project
+ExternalProject_Add(
+  szip
+  PREFIX 3rdparty
+  URL https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-2.1.1.tar.gz
+  BUILD_ALWAYS ON
+  INSTALL_DIR "${CMAKE_BINARY_DIR}/3rdparty/"
+  BUILD_BYPRODUCTS "${CMAKE_BINARY_DIR}/3rdparty/lib/libszip-static.a"
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
+add_library(sziplib STATIC IMPORTED GLOBAL)
+set_property(
+  TARGET sziplib PROPERTY IMPORTED_LOCATION
+                           "${CMAKE_BINARY_DIR}/3rdparty/lib/libszip-static.a")
 
-# -- Linux
-if(UNIX)
-	# Qt5 default is to build with -reduce-relocations, meaning we must build position-independent code...
-	add_definitions(-fPIC)
-endif(UNIX)
-
-# -- Windows
-if(WIN32)
-	# Additional defines for building libget
-	add_definitions(-D_WIN32 -DGCC_MINGW)
-
-	# Request C++11 Standard Support (Required for Qt 5.7)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
-	# Find ZLib
-	set(ZLIB_ROOT "C:/Users/axr61803/src/zlib_build")
-	set(ZLIB_INCLUDE_DIR "C:/Users/axr61803/src/zlib-1.2.5")
-	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "C:/Users/axr61803/src/zlib_build")
-
-	# HDF5 support?
-	if(USE_HDF)
-		set(HDF5_DIR "C:/Users/axr61803/src/hdf5_build")
-		set(HDF5_TOOLS_DIR "C:/Users/axr61803/src/hdf5_build/bin")
-		set(HDF5_INCLUDE_DIRS "C:/Users/axr61803/src/hdf5-1.10.1/src;C:/Users/axr61803/src/hdf5_build")
-		set(HDF5_LIBS "-LC:/Users/axr61803/src/hdf5_build/bin -lhdf5-static" CACHE STRING "Link-time commands to use HDF5 (Windows only)")
-	endif(USE_HDF)
-
-	# Add global NOMINMAX define for Windows systems, and inhibit console creation
-	ADD_DEFINITIONS("-DNOMINMAX")
-	SET(GUI_TYPE WIN32)
-	if(MINGW)
-		SET(CMAKE_EXE_LINKER_FLAGS "-mwindows")
-	endif(MINGW)
-endif(WIN32)
-
-# -- Mac
-if(APPLE)
-	ADD_DEFINITIONS(-D_MAC)
-
-	# Additional defines for building libget
-	add_definitions(-D__APPLE__)
-
-	# Set some specific C++11 related options here (set_property below does not seem to persist)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -std=c++11 ")
-
-	# Point directly to the HDF libraries, since find_package() doesn't seem to set the LIBRARIES variables
-	set(HDF5_DIR "/usr/local/hdf-1.8.13")
-	set(HDF5_LIBS "-L${HDF5_DIR}/lib -lhdf5" CACHE STRING "Link-time commands to use HDF5 (Mac only)")
-endif(APPLE)
+# Build HDF5 as an external project
+ExternalProject_Add(
+  HDF5
+  PREFIX 3rdparty
+  URL https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_10_7.zip
+  BUILD_ALWAYS ON
+  INSTALL_DIR "${CMAKE_BINARY_DIR}/3rdparty/"
+  BUILD_BYPRODUCTS "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5.a" "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_fortran.a" "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_f90cstub.a"
+  CMAKE_ARGS -DHDF5_BUILD_FORTRAN:bool=True
+             -DHDF5_INSTALL_MOD_FORTRAN:string=STATIC
+             -DHDF5_ENABLE_SZIP_SUPPORT:bool=True
+             -DHDF5_ENABLE_Z_LIB_SUPPORT:bool=True
+             -DCMAKE_Fortran_COMPILER=${CMAKE_Fortran_COMPILER}
+             -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
+add_library(hdf5main STATIC IMPORTED GLOBAL)
+set_property(
+  TARGET hdf5main
+  PROPERTY IMPORTED_LOCATION
+           "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5.a")
+add_dependencies(hdf5main HDF5 szip)
+add_library(hdf5fortran STATIC IMPORTED GLOBAL)
+set_property(
+  TARGET hdf5fortran
+  PROPERTY IMPORTED_LOCATION
+           "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_fortran.a")
+add_dependencies(hdf5fortran HDF5 szip)
+add_library(hdf5f90cstub STATIC IMPORTED GLOBAL)
+set_property(
+  TARGET hdf5f90cstub
+  PROPERTY IMPORTED_LOCATION
+           "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_f90cstub.a")
+add_dependencies(hdf5f90cstub HDF5 szip)
 
 # -- LibGET source
 OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
