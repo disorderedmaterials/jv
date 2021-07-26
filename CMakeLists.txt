@@ -35,20 +35,6 @@ endif(COMMAND cmake_policy)
 # -- Policy for automatic linkage of Qt libs to project
 CMAKE_POLICY(SET CMP0020 OLD)
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# Make sure CMake won't try to generate rules for moc (we will do it ourselves)
-set(CMAKE_AUTOMOC OFF)
-
-# Enable Fortran bindings (for libget)
-enable_language (Fortran)
-
-# Set macro definition if building lite version
-if(LITE)
-	add_definitions(-DLITE)
-endif(LITE)
-
 include(ExternalProject)
 
 # Build SZIP as an external project
@@ -97,6 +83,20 @@ set_property(
   PROPERTY IMPORTED_LOCATION
            "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_f90cstub.a")
 add_dependencies(hdf5f90cstub HDF5 szip)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# Make sure CMake won't try to generate rules for moc (we will do it ourselves)
+set(CMAKE_AUTOMOC OFF)
+
+# Enable Fortran bindings (for libget)
+enable_language (Fortran)
+
+# Set macro definition if building lite version
+if(LITE)
+	add_definitions(-DLITE)
+endif(LITE)
 
 # -- LibGET source
 OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
