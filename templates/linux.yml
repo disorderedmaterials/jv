@@ -31,7 +31,6 @@ steps:
       mkdir build
       cd build
       cmake ../ -G Ninja 
-      cmake -G "Ninja" 
       ninja
       ninja install
     displayName: 'Build'
