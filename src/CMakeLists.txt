@@ -90,7 +90,6 @@ set(jv_RES_QRC
 )
 QT5_ADD_RESOURCES(jv_RES ${jv_RES_QRC})
 
-add_dependencies(main HDF5)
 # Target 'main'
 add_library(main
   ${jv_RES}
@@ -98,6 +97,8 @@ add_library(main
   ${jv_SRCS}
   ${jv_MOC_SRCS}
 )
+
+add_dependencies(main HDF5)
 
 # Compile libget
 if(NOT EXTERNAL_LIBGET)
