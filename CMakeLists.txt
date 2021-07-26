@@ -27,28 +27,6 @@ set(VERSION_PATCH "4")
 # Build release version
 set(CMAKE_BUILD_TYPE "Release")
 
-# Set minimum versions for CMake, and tweak some policies
-cmake_minimum_required(VERSION 2.8.11)
-if(COMMAND cmake_policy)
-  cmake_policy(VERSION 2.6)
-endif(COMMAND cmake_policy)
-# -- Policy for automatic linkage of Qt libs to project
-CMAKE_POLICY(SET CMP0020 OLD)
-
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# Make sure CMake won't try to generate rules for moc (we will do it ourselves)
-set(CMAKE_AUTOMOC OFF)
-
-# Enable Fortran bindings (for libget)
-enable_language (Fortran)
-
-# Set macro definition if building lite version
-if(LITE)
-	add_definitions(-DLITE)
-endif(LITE)
-
 include(ExternalProject)
 
 # Build SZIP as an external project
@@ -97,6 +75,28 @@ set_property(
   PROPERTY IMPORTED_LOCATION
            "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_f90cstub.a")
 add_dependencies(hdf5f90cstub HDF5 szip)
+
+# Set minimum versions for CMake, and tweak some policies
+cmake_minimum_required(VERSION 2.8.11)
+if(COMMAND cmake_policy)
+  cmake_policy(VERSION 2.6)
+endif(COMMAND cmake_policy)
+# -- Policy for automatic linkage of Qt libs to project
+CMAKE_POLICY(SET CMP0020 OLD)
+
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# Make sure CMake won't try to generate rules for moc (we will do it ourselves)
+set(CMAKE_AUTOMOC OFF)
+
+# Enable Fortran bindings (for libget)
+enable_language (Fortran)
+
+# Set macro definition if building lite version
+if(LITE)
+	add_definitions(-DLITE)
+endif(LITE)
 
 # -- LibGET source
 OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
