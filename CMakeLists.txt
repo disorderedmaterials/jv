@@ -132,6 +132,7 @@ set(SRCS src/)
 # Set search locations for header files (for both project and external dependencies)
 include_directories(
 	${CMAKE_BINARY_DIR}/src
+	${CMAKE_BINARY_DIR}/3rdparty/include
 	${LIBGET_INCLUDES}
 	${Qt5Widgets_INCLUDE_DIRS}
 	${Qt5Core_INCLUDE_DIRS}
@@ -165,8 +166,8 @@ set_property(TARGET ${target_name} PROPERTY CXX_STANDARD 11)
 # Link line
 link_directories (${LIBRARY_OUTPUT_PATH})
 IF(WIN32 OR APPLE)
-	target_link_libraries(${target_name} main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport ${HDF5_LIBS} ${ZLIB_LIBRARIES})
+	target_link_libraries(${target_name} main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport hdf5fortran hdf5f90cstub hdf5main sziplib zliblib dl)
 ELSE(WIN32 OR APPLE)
-	target_link_libraries(${target_name} main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport ${HDF5_LIBRARIES})
+	target_link_libraries(${target_name} main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport hdf5fortran hdf5f90cstub hdf5main sziplib zliblib dl)
 ENDIF(WIN32 OR APPLE)
 
