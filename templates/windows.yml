@@ -19,9 +19,6 @@ steps:
     displayName: 'Install Qt'
   - powershell: |
       $ErrorActionPreference = 'Stop'
-      $env:Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\msvc2019_64"
-      $env:PATH += ";$env:Qt5_DIR" + "\bin"
-      echo $env:Qt5_DIR
       mkdir build
       cd build
       cmake ../ -G "Visual Studio 16 2019" -A "x64"
