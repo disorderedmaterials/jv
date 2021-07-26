@@ -1,4 +1,6 @@
 parameters:
+  - name: hdf5tag
+    default: hdf5-1_10_7
   - name: extraflags
     default: ''
   - name: ppa
@@ -22,12 +24,10 @@ steps:
     displayName: 'Install Prerequisites'
   - bash: |
       set -ex
-      QT_BASE_DIR="/opt/qt${{ parameters.qtver }}"
-      export QTDIR=$QT_BASE_DIR
-      export PATH=$QT_BASE_DIR/bin:$PATH
-      export LD_LIBRARY_PATH=$QT_BASE_DIR/lib/x86_64-linux-gnu:$QT_BASE_DIR/lib:$LD_LIBRARY_PATH
       mkdir build
       cd build
-      cmake -G "Ninja"
+      cmake ../ -G Ninja 
+      cmake -G "Ninja" 
       ninja
+      ninja install
     displayName: 'Build'
