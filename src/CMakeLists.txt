@@ -89,6 +89,7 @@ set(jv_RES_QRC
   icons.qrc 
 )
 QT5_ADD_RESOURCES(jv_RES ${jv_RES_QRC})
+
 add_dependencies(main HDF5)
 # Target 'main'
 add_library(main
