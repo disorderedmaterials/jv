@@ -12,12 +12,20 @@ trigger:
 pr: none
     
 jobs:
-  - job: 'windows'
-    displayName: 'Windows test'
-    timeoutInMinutes: 120
-    pool:
-      vmImage: 'windows-latest' 
-    steps:
-      - checkout: self
-        fetchDepth: 1
-      - template: templates/windows.yml
+  #- job: 'windows'
+  #  displayName: 'Windows test'
+  #  timeoutInMinutes: 120
+  #  pool:
+  #    vmImage: 'windows-latest' 
+  #  steps:
+  #    - checkout: self
+  #      fetchDepth: 1
+  #    - template: templates/windows.yml
+  - job: 'linux'
+        displayName: 'Ubuntu, Threads, CLI/GUI'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - checkout: self
+            fetchDepth: 1
+          - template: templates/linux.yml
