@@ -119,6 +119,11 @@ include_directories(
 	${HDF5_INCLUDE_DIRS}
 )
 
+if(UNIX)
+	# Qt5 default is to build with -reduce-relocations, meaning we must build position-independent code...
+	add_definitions(-fPIC)
+endif(UNIX)
+
 # Process CMakeLists.txt in src subdirectory
 add_subdirectory(${SRCS})
 
@@ -133,10 +138,7 @@ If(APPLE)
 	set(MACOSX_BUNDLE_COPYRIGHT "${AUTHOR}")
 endif(APPLE)
 
-if(UNIX)
-	# Qt5 default is to build with -reduce-relocations, meaning we must build position-independent code...
-	add_definitions(-fPIC)
-endif(UNIX)
+
 
 # Tag executable for generation
 add_executable(${target_name}  MACOSX_BUNDLE
