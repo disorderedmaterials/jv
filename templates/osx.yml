@@ -27,6 +27,7 @@ steps:
       export Qt5_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5
       export Qt5Core_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Core
       export Qt5Widgets_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Widgets
+      export Qt5Network_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Network
       export Qt5PrintSupport_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5PrintSupport
       export Qt5Gui_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Gui
       Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
