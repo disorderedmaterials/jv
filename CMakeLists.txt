@@ -39,6 +39,7 @@ else(EXTERNAL_LIBGET)
 	set(LIBGET_INCLUDES "${CMAKE_BINARY_DIR}/src/get" CACHE STRING "Include dir for libget (internal)")
 endif(EXTERNAL_LIBGET)
 
+# Inclide application support
 include(ExternalProject)
 enable_language(Fortran)
 

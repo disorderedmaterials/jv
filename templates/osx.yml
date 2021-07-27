@@ -21,6 +21,7 @@ steps:
     displayName: 'Install Prerequisites'
   - bash: |
       set -ex
+      # Managing packages
       QT_INSTALL_DIR=/usr/local/Cellar/qt@5
       QTVER=`ls -d ${QT_INSTALL_DIR}/* | sed "s/.*\(5\.[0-9][0-9]\.[0-9]\)/\1/g"`
       export Qt5_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5
@@ -31,6 +32,7 @@ steps:
       export Qt5Gui_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Gui
       export Qt5Svg_DIR=${QT_INSTALL_DIR}/$QTVER/lib/cmake/Qt5Svg
       Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
+      # Building
       mkdir build
       cd build
       cmake ../ -G Ninja -DCMAKE_Fortran_COMPILER:string="gfortran-9"
