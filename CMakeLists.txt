@@ -112,9 +112,9 @@ set_property(
 add_dependencies(hdf5f90cstub HDF5 szip)
 
 # Find required packages
-find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Svg REQUIRED)
