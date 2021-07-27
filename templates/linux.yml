@@ -32,5 +32,4 @@ steps:
       cd build
       cmake ../ -G Ninja 
       ninja
-      ninja install
     displayName: 'Build'
