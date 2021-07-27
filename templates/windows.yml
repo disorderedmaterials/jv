@@ -22,6 +22,6 @@ steps:
       $ErrorActionPreference = 'Stop'
       mkdir build
       cd build
-      cmake ../ -G "MinGW Makefiles" -A "x64"
+      cmake ../ -G "MinGW Makefiles" -A 
       cmake --build . --config Release
     displayName: 'Build'
