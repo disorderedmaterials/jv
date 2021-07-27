@@ -16,7 +16,6 @@ steps:
   - bash: |
       set -ex
       brew update-reset
-      brew install antlr antlr4-cpp-runtime ftgl
       brew install ninja
       brew install qt5
     displayName: 'Install Prerequisites'

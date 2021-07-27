@@ -22,7 +22,7 @@ jobs:
   #      fetchDepth: 1
   #    - template: templates/windows.yml
   - job: 'linux'
-    displayName: 'Ubuntu, Threads, CLI/GUI'
+    displayName: 'Ubuntu Build'
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -30,7 +30,7 @@ jobs:
         fetchDepth: 1
       - template: templates/linux.yml
   - job: 'osx'
-    displayName: 'OSX, Threads, CLI/GUI'
+    displayName: 'OSX Build'
     pool:
       vmImage: 'macos-latest'
     steps:
