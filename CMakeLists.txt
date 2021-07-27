@@ -26,6 +26,8 @@ set(VERSION_PATCH "4")
 
 # Build release version
 set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_CXX_STANDARD 11)
+
 
 # -- LibGET source
 OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
@@ -169,9 +171,6 @@ endif(APPLE)
 add_executable(${target_name}  MACOSX_BUNDLE
 	${SRCS}/main.cpp 
 )
-
-# Request C++11 Standard Support (Required for Qt 5.7)
-set_property(TARGET ${target_name} PROPERTY CXX_STANDARD 11)
 
 # Link line
 link_directories (${LIBRARY_OUTPUT_PATH})
