@@ -17,6 +17,7 @@ steps:
       set -ex
       # -- General
       sudo apt-get update -q
+      sudo apt-get install antlr4 ninja-build python3-setuptools uuid uuid-dev
       # -- Qt
       sudo add-apt-repository ppa:${{ parameters.ppa }} -y
       sudo apt-get install qt${{ parameters.qtver }}base qt${{ parameters.qtver }}svg qt${{ parameters.qtver }}imageformats -y
