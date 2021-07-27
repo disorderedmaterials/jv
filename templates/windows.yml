@@ -12,6 +12,7 @@ steps:
       versionSpec: '3.x'
   - script: |
       choco install -y antlr4
+      choco install -y mingw
     displayName: 'Install Prerequisites'
   - script: |
       python -m pip install aqtinstall
@@ -21,6 +22,6 @@ steps:
       $ErrorActionPreference = 'Stop'
       mkdir build
       cd build
-      cmake ../ -G "Visual Studio 16 2019" -A "x64"
+      cmake ../ -G "MinGW Makefiles" -A "x64"
       cmake --build . --config Release
     displayName: 'Build'
