@@ -26,6 +26,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QtSvg/QSvgGenerator>
+#include <QPainterPath>
 #include "data2d.h"
 
 // Forward Declarations
