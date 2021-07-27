@@ -32,6 +32,6 @@ steps:
       Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
       mkdir build
       cd build
-      cmake ../ -G Ninja - DCMAKE_Fortran_COMPILER:string="gfortran-9"
+      cmake ../ -G Ninja -DCMAKE_Fortran_COMPILER:string="gfortran-9"
       ninja
     displayName: 'Build'
