@@ -1,8 +1,14 @@
 parameters:
+  - name: hdf5tag
+    default: hdf5-1_10_7
   - name: extraflags
     default: ''
+  - name: ppa
+    default: 'beineri/opt-qt-5.15.2-focal'
   - name: qtver
     default: 5.15.1
+  - name: gui
+    default: true
   - name: threading
     default: true
 
@@ -16,10 +22,14 @@ steps:
     displayName: 'Install Prerequisites'
   - script: |
       python -m pip install aqtinstall
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_msvc2019_64 -m qtcore qtgui qtwidgets qtprintsupport
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_msvc2019_64 -m qt5core qtgui qtwidgets qtprintsupport
     displayName: 'Install Qt'
   - powershell: |
       $ErrorActionPreference = 'Stop'
+      $env:Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\msvc2019_64"
+      $env:PATH += ";$env:Qt5_DIR" + "\bin"
+      echo $env:Qt5_DIR
+      
       mkdir build
       cd build
       cmake ../ -G "MinGW Makefiles"
