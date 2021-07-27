@@ -28,6 +28,7 @@ set(VERSION_PATCH "4")
 set(CMAKE_BUILD_TYPE "Release")
 
 include(ExternalProject)
+enable_language(Fortran)
 
 # Build SZIP as an external project
 ExternalProject_Add(
