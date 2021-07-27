@@ -121,6 +121,7 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Svg REQUIRED)
+
 if(USE_HDF)
 	if(WIN32)
 	FIND_PACKAGE(HDF5 COMPONENTS C HL NO_MODULE REQUIRED shared)
