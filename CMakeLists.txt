@@ -27,6 +27,16 @@ set(VERSION_PATCH "4")
 # Build release version
 set(CMAKE_BUILD_TYPE "Release")
 
+# -- LibGET source
+OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
+if(EXTERNAL_LIBGET)
+	set(LIBGET_LIBRARY "-L${LIBGET_DIR} -lget" CACHE STRING "Link-time commands for external libget")
+	set(LIBGET_INCLUDES "${LIBGET_DIR}" CACHE STRING "Include dir for libget (external)")
+else(EXTERNAL_LIBGET)
+	set(LIBGET_LIBRARY "get" CACHE STRING "Link-time commands for external libget")
+	set(LIBGET_INCLUDES "${CMAKE_BINARY_DIR}/src/get" CACHE STRING "Include dir for libget (internal)")
+endif(EXTERNAL_LIBGET)
+
 include(ExternalProject)
 enable_language(Fortran)
 
@@ -76,16 +86,6 @@ set_property(
   PROPERTY IMPORTED_LOCATION
            "${CMAKE_BINARY_DIR}/3rdparty/lib/libhdf5_f90cstub.a")
 add_dependencies(hdf5f90cstub HDF5 szip)
-
-# -- LibGET source
-OPTION(EXTERNAL_LIBGET "Switch to use external (precompiled) libget" OFF)
-if(EXTERNAL_LIBGET)
-	set(LIBGET_LIBRARY "-L${LIBGET_DIR} -lget" CACHE STRING "Link-time commands for external libget")
-	set(LIBGET_INCLUDES "${LIBGET_DIR}" CACHE STRING "Include dir for libget (external)")
-else(EXTERNAL_LIBGET)
-	set(LIBGET_LIBRARY "get" CACHE STRING "Link-time commands for external libget")
-	set(LIBGET_INCLUDES "${CMAKE_BINARY_DIR}/src/get" CACHE STRING "Include dir for libget (internal)")
-endif(EXTERNAL_LIBGET)
 
 # Find required packages
 find_package(Qt5Widgets REQUIRED)
