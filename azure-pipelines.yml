@@ -21,11 +21,19 @@ jobs:
   #    - checkout: self
   #      fetchDepth: 1
   #    - template: templates/windows.yml
-  - job: 'linux'
-    displayName: 'Ubuntu, Threads, CLI/GUI'
+  #- job: 'linux'
+  #  displayName: 'Ubuntu, Threads, CLI/GUI'
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #  steps:
+  #    - checkout: self
+  #      fetchDepth: 1
+  #    - template: templates/linux.yml
+  - job: 'osx'
+    displayName: 'OSX, Threads, CLI/GUI'
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'macos-latest'
     steps:
       - checkout: self
         fetchDepth: 1
-      - template: templates/linux.yml
+      - template: templates/osx.yml
