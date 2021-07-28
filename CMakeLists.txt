@@ -54,18 +54,19 @@ ExternalProject_Add(
   URL https://github.com/madler/zlib/archive/refs/tags/v1.2.11.zip
   BUILD_ALWAYS ON
   INSTALL_DIR "${CMAKE_BINARY_DIR}/3rdparty/"
-  BUILD_BYPRODUCTS "${CMAKE_BINARY_DIR}/3rdparty/lib/libz.a"
+  BUILD_BYPRODUCTS "${CMAKE_BINARY_DIR}/3rdparty/lib/libzlibstatic.a"
   CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
 
   set_property(
     TARGET zliblib PROPERTY IMPORTED_LOCATION
-                             "${CMAKE_BINARY_DIR}/3rdparty/lib/libz.a")
+                             "${CMAKE_BINARY_DIR}/3rdparty/lib/libzlibstatic.a")
 else(BUILD_ZLIB)
   find_package(ZLIB REQUIRED)
   set_property(
     TARGET zliblib PROPERTY IMPORTED_LOCATION
                              "${ZLIB_LIBRARIES}")
 endif(BUILD_ZLIB)
+
 
 # Build SZIP as an external project
 ExternalProject_Add(
@@ -75,7 +76,10 @@ ExternalProject_Add(
   BUILD_ALWAYS ON
   INSTALL_DIR "${CMAKE_BINARY_DIR}/3rdparty/"
   BUILD_BYPRODUCTS "${CMAKE_BINARY_DIR}/3rdparty/lib/libszip-static.a"
-  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
+  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+  INSTALL_COMMAND  ${CMAKE_COMMAND} --install .
+  COMMAND   ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/3rdparty/src/szip-build/szip-config.cmake
+  COMMAND   ${CMAKE_COMMAND} -E remove -f ${CMAKE_BINARY_DIR}/3rdparty/src/szip-build/szip-targets.cmake)
 add_library(sziplib STATIC IMPORTED GLOBAL)
 set_property(
   TARGET sziplib PROPERTY IMPORTED_LOCATION
@@ -93,7 +97,9 @@ ExternalProject_Add(
              -DHDF5_INSTALL_MOD_FORTRAN:string=STATIC
              -DHDF5_ENABLE_SZIP_SUPPORT:bool=True
              -DHDF5_ENABLE_Z_LIB_SUPPORT:bool=True
+	     -DBUILD_TESTING:bool=False
              -DCMAKE_Fortran_COMPILER=${CMAKE_Fortran_COMPILER}
+	     -DCMAKE_Fortran_FLAGS:string="-Wl,--allow-multiple-definition"
              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
 add_library(hdf5main STATIC IMPORTED GLOBAL)
 set_property(
