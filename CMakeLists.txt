@@ -45,7 +45,7 @@ enable_language(Fortran)
 
 # ZLIB
 # Locate installed library, or build as external version (if BUILD_ZLIB)
-option(BUILD_ZLIB "Build ZLib as an external project" ON)
+option(BUILD_ZLIB "Build ZLib as an external project" OFF)
 add_library(zliblib STATIC IMPORTED GLOBAL)
 if(BUILD_ZLIB)
 ExternalProject_Add(
@@ -86,6 +86,9 @@ set_property(
                            "${CMAKE_BINARY_DIR}/3rdparty/lib/libszip-static.a")
 
 # Build HDF5 as an external project
+if(WIN32)
+  set(HDF_FORTRAN_LINK_FLAGS "-Wl,--allow-multiple-definition")
+endif(WIN32)
 ExternalProject_Add(
   HDF5
   PREFIX 3rdparty
@@ -99,7 +102,7 @@ ExternalProject_Add(
              -DHDF5_ENABLE_Z_LIB_SUPPORT:bool=True
 	     -DBUILD_TESTING:bool=False
              -DCMAKE_Fortran_COMPILER=${CMAKE_Fortran_COMPILER}
-	     -DCMAKE_Fortran_FLAGS:string="-Wl,--allow-multiple-definition"
+	     -DCMAKE_Fortran_FLAGS:string=${HDF_FORTRAN_LINK_FLAGS}
              -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>)
 add_library(hdf5main STATIC IMPORTED GLOBAL)
 set_property(

@@ -32,6 +32,6 @@ steps:
       
       mkdir build
       cd build
-      cmake ../ -G "MinGW Makefiles"
+      cmake ../ -G "MinGW Makefiles" -DBUILD_ZLIB:bool=True
       MinGW32-make.exe
     displayName: 'Build'
