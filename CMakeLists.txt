@@ -182,9 +182,9 @@ add_executable(${target_name}  MACOSX_BUNDLE
 
 # Link line
 link_directories (${LIBRARY_OUTPUT_PATH})
-IF(WIN32 OR APPLE)
+IF(WIN32)
+	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE hdf5fortran hdf5f90cstub hdf5main sziplib zliblib)
+ELSE(WIN32)
 	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE hdf5fortran hdf5f90cstub hdf5main sziplib zliblib dl)
-ELSE(WIN32 OR APPLE)
-	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE hdf5fortran hdf5f90cstub hdf5main sziplib zliblib dl)
-ENDIF(WIN32 OR APPLE)
+ENDIF(WIN32)
 
