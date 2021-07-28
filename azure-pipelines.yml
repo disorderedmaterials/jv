@@ -22,20 +22,20 @@ jobs:
         fetchDepth: 1
       - template: templates/windows.yml
   
-  - job: 'linux'
-    displayName: 'Ubuntu Build'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-      - checkout: self
-        fetchDepth: 1
-      - template: templates/linux.yml
+  #- job: 'linux'
+  #  displayName: 'Ubuntu Build'
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #  steps:
+  #    - checkout: self
+  #      fetchDepth: 1
+  #    - template: templates/linux.yml
   
-  - job: 'osx'
-    displayName: 'OSX Build'
-    pool:
-      vmImage: 'macos-latest'
-    steps:
-      - checkout: self
-        fetchDepth: 1
-      - template: templates/osx.yml
+  #- job: 'osx'
+  #  displayName: 'OSX Build'
+  #  pool:
+  #    vmImage: 'macos-latest'
+  #  steps:
+  #    - checkout: self
+  #      fetchDepth: 1
+  #    - template: templates/osx.yml

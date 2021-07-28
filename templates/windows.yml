@@ -33,4 +33,5 @@ steps:
       mkdir build
       cd build
       cmake ../ -G "MinGW Makefiles"
+      MinGW-make.exe
     displayName: 'Build'
