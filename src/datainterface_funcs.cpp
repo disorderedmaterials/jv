@@ -364,8 +364,8 @@ void LoadDataThread::run()
 	if (headerOnly_) networkReply_ = networkManager.head(QNetworkRequest(location_));
 	else networkReply_ = networkManager.get(QNetworkRequest(location_));
 
-	// Create reply timeout object (30 seconds)
-	TReplyTimeout replyTimeout(networkReply_, 30000);
+	// Create reply timeout object (10 minutes)
+	TReplyTimeout replyTimeout(networkReply_, 600000);
 
 	// Connect the downloadProgress signal to our own handler (which will update the relevant ProgressBar in the parent_)
 	if (parent_ && parent_->progressBar())
