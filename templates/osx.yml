@@ -19,7 +19,7 @@ steps:
       brew install ninja
       brew install qt5
     displayName: 'Install Prerequisites'
-    - bash: |
+  - bash: |
       wget https://github.com/disorderedmaterials/HDF5/releases/download/${{ parameters.hdf5tag }}/${{ parameters.hdf5tag }}-osx.zip
       unzip ${{ parameters.hdf5tag }}-osx.zip
       ls
