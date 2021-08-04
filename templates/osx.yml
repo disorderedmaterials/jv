@@ -26,7 +26,6 @@ steps:
     displayName: 'Download HDF5 Artifacts'
   - bash: |
       set -ex
-    displayName: 'Download HDF5 Artifacts'
       HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
       # Managing packages
       QT_INSTALL_DIR=/usr/local/Cellar/qt@5
