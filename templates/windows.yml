@@ -26,12 +26,19 @@ steps:
     displayName: 'Install Qt'
   - powershell: |
       $ErrorActionPreference = 'Stop'
+      $HDF5_ARTIFACTS = "https://github.com/disorderedmaterials/HDF5/releases/download/" + "${{ parameters.hdf5tag }}/${{ parameters.hdf5tag }}-windows.zip"
+      wget $HDF5_ARTIFACTS -O hdf5.zip
+      7z x hdf5.zip
+    displayName: 'Download HDF5 Artifacts'
+  - powershell: |
+      $ErrorActionPreference = 'Stop'
+      $env:HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
       $env:Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\msvc2019_64"
       $env:PATH += ";$env:Qt5_DIR" + "\bin"
       echo $env:Qt5_DIR
       
       mkdir build
       cd build
-      cmake ../ -G "MinGW Makefiles" -DBUILD_ZLIB:bool=True
+      cmake ../ -G "MinGW Makefiles" -DBUILD_ZLIB:bool=True -DLOCAL_STATIC_HDF5:bool=True -DHDF5_DIR:path=${HDF5_DIR} ${{ parameters.extraflags }}
       MinGW32-make.exe
     displayName: 'Build'
