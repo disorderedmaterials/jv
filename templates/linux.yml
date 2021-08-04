@@ -22,7 +22,7 @@ steps:
       sudo add-apt-repository ppa:${{ parameters.ppa }} -y
       sudo apt-get install qt${{ parameters.qtver }}base qt${{ parameters.qtver }}svg qt${{ parameters.qtver }}imageformats -y
     displayName: 'Install Prerequisites'
-    - bash: |
+  - bash: |
       wget https://github.com/disorderedmaterials/HDF5/releases/download/${{ parameters.hdf5tag }}/${{ parameters.hdf5tag }}-linux.zip
       unzip ${{ parameters.hdf5tag }}-linux.zip
     displayName: 'Download HDF5 Artifacts'
