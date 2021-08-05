@@ -3,6 +3,9 @@ include_directories(
   ../
   ${CMAKE_CURRENT_BINARY_DIR} 
   ${CMAKE_CURRENT_BINARY_DIR}/../
+  ${Qt5Core_INCLUDE_DIRS}
+  ${Qt5Gui_INCLUDE_DIRS}
+  ${Qt5Network_INCLUDE_DIRS}
   ${Qt5Widgets_INCLUDE_DIRS}
   ${CMAKE_SOURCE_DIR}
   ${CMAKE_BINARY_DIR}
@@ -97,6 +100,8 @@ add_library(main
   ${jv_SRCS}
   ${jv_MOC_SRCS}
 )
+
+add_dependencies(main HDF5)
 
 # Compile libget
 if(NOT EXTERNAL_LIBGET)

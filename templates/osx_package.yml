@@ -1,0 +1,26 @@
+steps:
+  - bash: |
+      pip3 install dmgbuild biplist
+    displayName: 'Install Prerequisites'
+  - bash: |
+      set -ex
+      # Set Qt dir - assume that it is somewhere in /usr/local/Cellar
+      QT_INSTALL_DIR=/usr/local/Cellar/qt@5
+      QTVER=`ls -d ${QT_INSTALL_DIR}/* | sed "s/.*\(5\.[0-9][0-9]\.[0-9]\)/\1/g"`
+      Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
+      # Get program version
+      JV_VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+    displayName: 'Prepare DMG Dirs'
+  - bash: |
+      set -ex
+      VERSION=$(cat version)
+      # Fix icon link
+      sed -i -e "s/Gudrun.icns/Gudrun-GUI.icns/g" Gudrun-GUI-${VERSION}/Gudrun-GUI.app/Contents/Info.plist
+      # Create DMG
+      dmgbuild -s ci/osx/dmgbuild-settings.py -D app=./Gudrun-GUI-${VERSION}/Gudrun-GUI.app -D icon=./Gudrun-GUI-${VERSION}/Gudrun-GUI.app/Contents/Resources/Gudrun-GUI.icns "Gudrun GUI" Gudrun-GUI-${VERSION}.dmg
+    displayName: 'Create Disk Images'
+  - bash: |
+      set -ex
+      mkdir packages
+      mv Gudrun*.dmg packages
+    displayName: 'Move Artifacts'

@@ -1,0 +1,44 @@
+parameters:
+  - name: hdf5tag
+    default: hdf5-1_10_7
+  - name: extraflags
+    default: ''
+  - name: ppa
+    default: 'beineri/opt-qt-5.15.2-focal'
+  - name: qtver
+    default: 5.15.1
+  - name: gui
+    default: true
+  - name: threading
+    default: true
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+  - script: |
+      choco install -y antlr4
+      choco install -y mingw
+    displayName: 'Install Prerequisites'
+  - script: |
+      python -m pip install aqtinstall
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_mingw81 -m qt5core qtgui qtwidgets qtprintsupport
+    displayName: 'Install Qt'
+  - powershell: |
+      $ErrorActionPreference = 'Stop'
+      $HDF5_ARTIFACTS = "https://github.com/disorderedmaterials/HDF5/releases/download/" + "${{ parameters.hdf5tag }}/${{ parameters.hdf5tag }}-windows.zip"
+      wget $HDF5_ARTIFACTS -O hdf5.zip
+      7z x hdf5.zip
+    displayName: 'Download HDF5 Artifacts'
+  - bash: |
+      set -ex
+      HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
+      Qt5_DIR=/d/a/1/b/Qt/5.15.1/mingw81_64
+      PATH=$PATH:~"${Qt5_DIR}"
+      PATH=$PATH:~"\bin"
+      
+      mkdir build
+      cd build
+      cmake ../ -G "MinGW Makefiles" -DLOCAL_STATIC_HDF5:bool=True -DHDF5_DIR:path=${HDF5_DIR} ${{ parameters.extraflags }} -DCMAKE_PREFIX_PATH:path=${Qt5_DIR}/lib/cmake
+      MinGW32-make.exe
+    displayName: 'Build'

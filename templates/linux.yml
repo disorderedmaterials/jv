@@ -1,0 +1,42 @@
+parameters:
+  - name: hdf5tag
+    default: hdf5-1_10_7
+  - name: extraflags
+    default: ''
+  - name: ppa
+    default: 'beineri/opt-qt-5.15.2-focal'
+  - name: qtver
+    default: 515
+  - name: gui
+    default: true
+  - name: threading
+    default: true
+
+steps:
+  - bash: |
+      set -ex
+      # -- General
+      sudo apt-get update -q
+      sudo apt-get install antlr4 ninja-build python3-setuptools uuid uuid-dev
+      # -- Qt
+      sudo add-apt-repository ppa:${{ parameters.ppa }} -y
+      sudo apt-get install qt${{ parameters.qtver }}base qt${{ parameters.qtver }}svg qt${{ parameters.qtver }}imageformats -y
+    displayName: 'Install Prerequisites'
+  - bash: |
+      wget https://github.com/disorderedmaterials/HDF5/releases/download/${{ parameters.hdf5tag }}/${{ parameters.hdf5tag }}-linux.zip
+      unzip ${{ parameters.hdf5tag }}-linux.zip
+    displayName: 'Download HDF5 Artifacts'
+  - bash: |
+      set -ex
+      HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
+      # Managing packages
+      QT_BASE_DIR="/opt/qt${{ parameters.qtver }}"
+      export QTDIR=$QT_BASE_DIR
+      export PATH=$QT_BASE_DIR/bin:$PATH
+      export LD_LIBRARY_PATH=$QT_BASE_DIR/lib/x86_64-linux-gnu:$QT_BASE_DIR/lib:$LD_LIBRARY_PATH
+      # Building
+      mkdir build
+      cd build
+      cmake ../ -G Ninja ${{ parameters.extraflags }} -DLOCAL_STATIC_HDF5:bool=true -DHDF5_DIR:path=${HDF5_DIR}
+      ninja
+    displayName: 'Build'
