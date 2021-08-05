@@ -30,7 +30,7 @@ steps:
       wget $HDF5_ARTIFACTS -O hdf5.zip
       7z x hdf5.zip
     displayName: 'Download HDF5 Artifacts'
-  -bash: |
+  - bash: |
       set -ex
       HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
       Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\mingw81"
