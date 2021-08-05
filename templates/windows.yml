@@ -39,6 +39,6 @@ steps:
       
       mkdir build
       cd build
-      cmake ../ -G "MinGW Makefiles" -DBUILD_ZLIB:bool=True -DLOCAL_STATIC_HDF5:bool=True -DHDF5_DIR:path=${HDF5_DIR} ${{ parameters.extraflags }}
+      cmake ../ -G "MinGW Makefiles" -DLOCAL_STATIC_HDF5:bool=True -DHDF5_DIR:path=${HDF5_DIR} ${{ parameters.extraflags }}
       MinGW32-make.exe
     displayName: 'Build'
