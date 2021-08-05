@@ -33,7 +33,7 @@ steps:
   - bash: |
       set -ex
       HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
-      Qt5_DIR="$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\mingw81"
+      Qt5_DIR=/d/a/1/b/Qt/5.15.1/mingw81_64
       PATH=$PATH:~"${Qt5_DIR}"
       PATH=$PATH:~"\bin"
       
