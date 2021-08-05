@@ -226,6 +226,6 @@ link_directories (${LIBRARY_OUTPUT_PATH})
 IF(WIN32)
 	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE ${LINK_LIBS})
 ELSE(WIN32)
-	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE hdf5fortran hdf5f90cstub hdf5main sziplib zliblib dl)
+	target_link_libraries(${target_name} PUBLIC main ${LIBGET_LIBRARY} Qt5::Widgets Qt5::Core Qt5::Network Qt5::PrintSupport PRIVATE ${LINK_LIBS} dl)
 ENDIF(WIN32)
 
