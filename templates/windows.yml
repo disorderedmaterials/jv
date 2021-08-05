@@ -35,7 +35,7 @@ steps:
       HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
       Qt5_DIR="$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\mingw81"
       PATH=$PATH:~"${Qt5_DIR}"
-      PATH=$PATH:~"\bin"
+      PATH=$PATH:~"/bin"
       
       mkdir build
       cd build
