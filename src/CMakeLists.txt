@@ -87,7 +87,9 @@ SET(jv_SRCS
   rundata.cpp
 )
 
-icons.qrc 
+# Resources
+set(jv_RES_QRC
+  icons.qrc 
 )
 QT5_ADD_RESOURCES(jv_RES ${jv_RES_QRC})
 
