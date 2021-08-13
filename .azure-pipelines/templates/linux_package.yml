@@ -26,7 +26,7 @@ steps:
       # Extract the version from the source
       export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
       # Run on the targets
-      ./linuxdeploy.AppImage --appdir JournalViewer-${VERSION}.AppDir --plugin qt --output appimage
+      ./linuxdeploy.AppImage --appdir JournalViewer-${VERSION}.AppDir --plugin qt --output appimage -i extra/JournalViewer.png
     displayName: 'Create AppImages'
   - bash: |
       set -ex
