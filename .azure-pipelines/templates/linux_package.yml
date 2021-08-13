@@ -8,7 +8,7 @@ steps:
       wget https://raw.githubusercontent.com/disorderedmaterials/scripts/master/prep-appimage
       chmod u+x ./prep-appimage
       export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
-      ./prep-appimage -a JournalViewer -v ${VERSION} build/bin/jv
+      ./prep-appimage -a JournalViewer -v ${VERSION} -b build/bin/jv
     displayName: 'Prepare AppDir'
   - bash: |
       set -ex
