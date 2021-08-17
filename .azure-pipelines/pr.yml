@@ -20,6 +20,7 @@ jobs:
       - checkout: self
         fetchDepth: 1
       - template: templates/windows.yml
+      - template: templates/windows_package.yml
   
   - job: 'linux'
     displayName: 'Ubuntu Build'
@@ -29,6 +30,7 @@ jobs:
       - checkout: self
         fetchDepth: 1
       - template: templates/linux.yml
+      - template: templates/linux_package.yml
   
   - job: 'osx'
     displayName: 'OSX Build'
@@ -38,3 +40,4 @@ jobs:
       - checkout: self
         fetchDepth: 1
       - template: templates/osx.yml
+      - template: templates/osx_package.yml

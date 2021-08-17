@@ -1,0 +1,35 @@
+parameters:
+  - name: qtver
+    default: 515
+
+steps:
+  - bash: |
+      set -ex
+      wget https://raw.githubusercontent.com/disorderedmaterials/scripts/master/prep-appimage
+      chmod u+x ./prep-appimage
+      export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+      ./prep-appimage -a JournalViewer -v ${VERSION} -b build/bin/jv
+    displayName: 'Prepare AppDir'
+  - bash: |
+      set -ex
+      echo -e "\nRetrieving linuxdeploy...\n"
+      wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -O linuxdeploy.AppImage
+      echo -e "\nRetrieving qt plugin for linuxdeploy...\n"
+      wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+      chmod u+x ./linuxdeploy*.AppImage
+    displayName: 'Download linuxdeploy Tools'
+  - bash: |
+      set -ex
+      # Set environment vars to locate Qt
+      QT_BASE_DIR="/opt/qt${{ parameters.qtver }}"
+      export PATH=$QT_BASE_DIR/bin:$PATH
+      # Extract the version from the source
+      export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+      # Run on the targets
+      ./linuxdeploy.AppImage --appdir JournalViewer-${VERSION}.AppDir --plugin qt --output appimage -i extra/JournalViewer.png
+    displayName: 'Create AppImages'
+  - bash: |
+      set -ex
+      mkdir packages
+      mv JournalViewer-*-x86_64.AppImage packages
+    displayName: 'Move Artifacts'

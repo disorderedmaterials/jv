@@ -4,10 +4,9 @@ trigger:
     - master
     - refs/tags/*
   paths:
-    include:
-    - src/*
-    - extra/*
-    - CMakeLists.txt
+    exclude:
+    - .azure-pipelines/pr.yml
+    - .azure-pipelines/release.yml
 
 pr: none
     

@@ -1,6 +1,14 @@
+parameters:
+  - name: qtver
+    default: 5.15.1
+
 steps:
   - bash: |
       pip3 install dmgbuild biplist
+      wget https://raw.githubusercontent.com/disorderedmaterials/scripts/master/prep-dmg
+      chmod u+x ./prep-dmg
+      wget https://raw.githubusercontent.com/disorderedmaterials/scripts/master/prep-appimage
+      chmod u+x ./prep-appimage
     displayName: 'Install Prerequisites'
   - bash: |
       set -ex
@@ -10,17 +18,19 @@ steps:
       Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
       # Get program version
       JV_VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+      ./prep-dmg -a JournalViewer -v ${JV_VERSION} -b build/bin/JournalViewer.app/Contents/MacOS/JournalViewer -d ${Qt5_ROOT} -i extra/jv1024.png -p build/bin/JournalViewer.app/Contents/Info.plist
     displayName: 'Prepare DMG Dirs'
   - bash: |
       set -ex
-      VERSION=$(cat version)
+       # Get program version
+      JV_VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
       # Fix icon link
-      sed -i -e "s/Gudrun.icns/Gudrun-GUI.icns/g" Gudrun-GUI-${VERSION}/Gudrun-GUI.app/Contents/Info.plist
+      sed -i -e "s/JournalViewer.icns/JournalViewer.icns/g" JournalViewer-${JV_VERSION}/JournalViewer.app/Contents/Info.plist
       # Create DMG
-      dmgbuild -s ci/osx/dmgbuild-settings.py -D app=./Gudrun-GUI-${VERSION}/Gudrun-GUI.app -D icon=./Gudrun-GUI-${VERSION}/Gudrun-GUI.app/Contents/Resources/Gudrun-GUI.icns "Gudrun GUI" Gudrun-GUI-${VERSION}.dmg
+      dmgbuild -s ci/osx/dmgbuild-settings.py -D app=./JournalViewer-${JV_VERSION}/JournalViewer.app -D icon=./JournalViewer-${VERSION}/JournalViewer.app/Contents/Resources/JournalViewer.icns "JournalViewer" JournalViewer-${VERSION}.dmg
     displayName: 'Create Disk Images'
   - bash: |
       set -ex
       mkdir packages
-      mv Gudrun*.dmg packages
+      mv JournalViewer*.dmg packages
     displayName: 'Move Artifacts'
