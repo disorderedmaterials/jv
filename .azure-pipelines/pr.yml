@@ -12,7 +12,7 @@ pr:
 
 jobs:
   - job: 'windows'
-    displayName: 'Windows test'
+    displayName: 'Windows Build'
     pool:
       vmImage: 'windows-latest'
     steps:

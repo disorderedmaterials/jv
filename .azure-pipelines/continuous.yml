@@ -12,8 +12,7 @@ pr: none
     
 jobs:
   - job: 'windows'
-    displayName: 'Windows test'
-    timeoutInMinutes: 120
+    displayName: 'Windows Build'
     pool:
       vmImage: 'windows-latest' 
     steps:
