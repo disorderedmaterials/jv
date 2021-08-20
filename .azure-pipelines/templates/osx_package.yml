@@ -17,17 +17,17 @@ steps:
       QTVER=`ls -d ${QT_INSTALL_DIR}/* | sed "s/.*\(5\.[0-9][0-9]\.[0-9]\)/\1/g"`
       Qt5_ROOT=${QT_INSTALL_DIR}/${QTVER}
       # Get program version
-      JV_VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
-      ./prep-dmg -a JournalViewer -v ${JV_VERSION} -b build/bin/JournalViewer.app/Contents/MacOS/JournalViewer -d ${Qt5_ROOT} -i extra/jv1024.png -p build/bin/JournalViewer.app/Contents/Info.plist
+      export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+      ./prep-dmg -a JournalViewer -v ${VERSION} -b build/bin/JournalViewer.app/Contents/MacOS/JournalViewer -d ${Qt5_ROOT} -i extra/jv1024.png -p build/bin/JournalViewer.app/Contents/Info.plist
     displayName: 'Prepare DMG Dirs'
   - bash: |
       set -ex
        # Get program version
-      JV_VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
+      export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
       # Fix icon link
-      sed -i -e "s/JournalViewer.icns/JournalViewer.icns/g" JournalViewer-${JV_VERSION}/JournalViewer.app/Contents/Info.plist
+      sed -i -e "s/JournalViewer.icns/JournalViewer.icns/g" JournalViewer-${VERSION}/JournalViewer.app/Contents/Info.plist
       # Create DMG
-      dmgbuild -s ci/osx/dmgbuild-settings.py -D app=./JournalViewer-${JV_VERSION}/JournalViewer.app -D icon=./JournalViewer-${VERSION}/JournalViewer.app/Contents/Resources/JournalViewer.icns "JournalViewer" JournalViewer-${VERSION}.dmg
+      dmgbuild -s ci/osx/dmgbuild-settings.py -D app=./JournalViewer-${VERSION}/JournalViewer.app -D icon=./JournalViewer-${VERSION}/JournalViewer.app/Contents/Resources/JournalViewer.icns "JournalViewer" JournalViewer-${VERSION}.dmg
     displayName: 'Create Disk Images'
   - bash: |
       set -ex
