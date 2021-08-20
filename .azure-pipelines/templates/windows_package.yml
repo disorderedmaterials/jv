@@ -12,7 +12,7 @@ steps:
       $env:Qt5_DIR = "$(Build.BinariesDirectory)\Qt\${{ parameters.qtver }}\mingw81_64"
       $env:PATH += ";$env:Qt5_DIR" + "\bin"
       echo $env:Qt5_DIR
-      $env:MINGW_DIR = $env:Qt5_DIR
+      $env:MINGW_LIB_DIR = "C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin"
       $env:JV_DIR = $(Get-Location).path + "\build\bin"
       # Run Inno Setup Compiler
       iscc.exe /O.\ .\ci\windows\jv.iss

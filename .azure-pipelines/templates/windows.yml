@@ -3,8 +3,6 @@ parameters:
     default: hdf5-1_10_7
   - name: extraflags
     default: ''
-  - name: ppa
-    default: 'beineri/opt-qt-5.15.2-focal'
   - name: qtver
     default: 5.15.1
   - name: gui
@@ -18,7 +16,6 @@ steps:
       versionSpec: '3.x'
   - script: |
       choco install -y antlr4
-      choco install -y mingw
     displayName: 'Install Prerequisites'
   - script: |
       python -m pip install aqtinstall
@@ -32,11 +29,10 @@ steps:
     displayName: 'Download HDF5 Artifacts'
   - bash: |
       set -ex
+      ls C:/ProgramData/chocolatey/lib/mingw
       HDF5_DIR="$(pwd)/${{ parameters.hdf5tag }}"
-      Qt5_DIR=/d/a/1/b/Qt/5.15.1/mingw81_64
-      PATH=$PATH:~"${Qt5_DIR}"
-      PATH=$PATH:~"\bin"
-      
+      Qt5_DIR="/d/a/1/b/Qt/5.15.1/mingw81_64"
+      PATH="${PATH}:${Qt5_DIR}"
       mkdir build
       cd build
       cmake ../ -G "MinGW Makefiles" -DLOCAL_STATIC_HDF5:bool=True -DHDF5_DIR:path=${HDF5_DIR} ${{ parameters.extraflags }} -DCMAKE_PREFIX_PATH:path=${Qt5_DIR}/lib/cmake
