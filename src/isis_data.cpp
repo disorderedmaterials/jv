@@ -62,5 +62,6 @@ InstrumentInfo ISIS::instruments_[] = {
 	{ "VESUVIO",	"EVS", 		TS1, 	"ndxevs" },
 	{ "WISH",	"WISH",		TS2 },
 	{ "ZOOM",	"ZOOM",		TS2 },
+	{ "CHRONUS",	"CHRONUS",		TS1 }
 };
 
