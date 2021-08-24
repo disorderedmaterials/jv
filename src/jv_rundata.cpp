@@ -144,8 +144,8 @@ void JournalViewer::resetFilters()
 			break;
 		}
 	}
-	if (ui.FilterUserCombo->currentText()=="") ui.FilterUserCombo->setCurrentText("<All>");
-	if (ui.FilterRBCombo->currentText()=="") ui.FilterRBCombo->setCurrentText("<All>");
+	if (ui.FilterUserCombo->currentText().isEmpty()) ui.FilterUserCombo->setCurrentText("<All>");
+	if (ui.FilterRBCombo->currentText().isEmpty()) ui.FilterRBCombo->setCurrentText("<All>");
 }
 
 // Create groups over visible RunData
