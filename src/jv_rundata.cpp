@@ -106,10 +106,6 @@ void JournalViewer::storeFilters()
 // Retrieve stored filter values
 void JournalViewer::retrieveFilters()
 {
-	// Set user and RB filters to stored values, if these values still exist
-	for (int n=0; n<ui.FilterUserCombo->count(); ++n) if (ui.FilterUserCombo->itemText(n) == storedUserFilter_) ui.FilterUserCombo->setCurrentIndex(n);
-	for (int n=0; n<ui.FilterRBCombo->count(); ++n) if (ui.FilterRBCombo->itemText(n) == storedRBFilter_) ui.FilterRBCombo->setCurrentIndex(n);
-	
 	// Set stored run number and date limits (if lock button is checked) or reset to extreme limits otherwise
 	ui.FilterFromRunSpin->setValue(ui.FilterFromRunLockButton->isChecked() ? storedFromRunFilter_ : firstRunNumber_);
 	ui.FilterToRunSpin->setValue(ui.FilterToRunLockButton->isChecked() ? storedToRunFilter_ : lastRunNumber_);
@@ -131,8 +127,25 @@ void JournalViewer::resetFilters()
 	ui.FilterToDateTimeEdit->setDateTime(latestRunStart_);
 	ui.FilterFromRunSpin->setValue(firstRunNumber_);
 	ui.FilterToRunSpin->setValue(lastRunNumber_);
-	ui.FilterUserCombo->setCurrentIndex(0);
-	ui.FilterRBCombo->setCurrentIndex(0);
+
+	for (auto user : availableUsers_)
+	{
+		if (user.contains(storedUserFilter_, Qt::CaseInsensitive))
+		{	
+			ui.FilterUserCombo->setCurrentText(storedUserFilter_);
+			break;
+		}
+	}
+	for (auto rb : availableRB_)
+	{
+		if (rb==storedRBFilter_.toInt())
+		{	
+			ui.FilterRBCombo->setCurrentText(storedRBFilter_);
+			break;
+		}
+	}
+	if (ui.FilterUserCombo->currentText()=="") ui.FilterUserCombo->setCurrentText("<All>");
+	if (ui.FilterRBCombo->currentText()=="") ui.FilterRBCombo->setCurrentText("<All>");
 }
 
 // Create groups over visible RunData
