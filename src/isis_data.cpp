@@ -28,6 +28,7 @@ InstrumentInfo ISIS::instruments_[] = {
 	{ "ALF",	"ALF",	 	TS1 },
 	{ "ARGUS",	"ARGUS", 	Muon },
 	{ "CHIPIR",	"CHIPIR",	TS2 },
+	{ "CHRONUS",	"CHRONUS",		TS1 },
 	{ "CRISP",	"CSP", 		TS1 },
 	{ "EMMA",	"EMMA",		TS1,	"ndxemma", "EMMA-A" },
 	{ "EMU",	"EMU",		Muon },
@@ -61,6 +62,6 @@ InstrumentInfo ISIS::instruments_[] = {
 	{ "TOSCA",	"TSC",		TS1 },
 	{ "VESUVIO",	"EVS", 		TS1, 	"ndxevs" },
 	{ "WISH",	"WISH",		TS2 },
-	{ "ZOOM",	"ZOOM",		TS2 },
+	{ "ZOOM",	"ZOOM",		TS2 }
 };
 

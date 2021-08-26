@@ -290,6 +290,7 @@ void JournalViewer::setJournal(Journal* jrnl)
 	}
 
 	// New journal data has been loaded (hopefully), so must update limits and unique lists
+	storeFilters();
 	findFilterLimits();
 	resetFilters();
 	filterRunData();
