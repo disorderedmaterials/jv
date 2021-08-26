@@ -299,9 +299,9 @@ void JournalViewer::filterRunData()
 	// Grab current search/filter parameters
 	QString search = ui.SearchEdit->text();
 	JournalViewer::SearchStyle style = (JournalViewer::SearchStyle) ui.SearchStyleCombo->currentIndex();
-	bool filterUser = (ui.FilterUserCombo->currentIndex() > 0);
+	bool filterUser = (ui.FilterUserCombo->currentText() != "<All>");
 	QString filterUserString = ui.FilterUserCombo->currentText();
-	bool filterRB = (ui.FilterRBCombo->currentIndex() > 0);
+	bool filterRB = (ui.FilterRBCombo->currentText() != "<All>");
 	QString filterRBString = ui.FilterRBCombo->currentText();
 	QDateTime filterFromDateTime = ui.FilterFromDateTimeEdit->dateTime();
 	QDateTime filterToDateTime = ui.FilterToDateTimeEdit->dateTime();
