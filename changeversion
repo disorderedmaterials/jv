@@ -53,83 +53,12 @@ echo -n "                   (Patch Version) : "
 grep 'set(VERSION_PATCH' CMakeLists.txt | sed -e 's/set(VERSION_PATCH \"\([0-9a-z\.]\+\)\")/\1/g'
 echo ""
 
-# configure.ac
-echo -n "    configure.ac (Package Version) : "
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/m4_define(\[${CAPNAME}_VERSION\],\[\([0-9a-z\.]\+\)\])/m4_define([${CAPNAME}_VERSION],[$MAJOR.$MINOR.$PATCH])/g" configure.ac
-fi
-grep "m4_define(\[${CAPNAME}_VERSION\]" configure.ac | sed -e "s/m4_define(\[${CAPNAME}_VERSION\],\[\([0-9a-z\.]\+\)\])/\1/g"
-
-# Desktop files
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/Version=[0-9\.]*/Version=$MAJOR.$MINOR.$PATCH/g" extra/*.dt
-fi
-for a in extra/*.dt; do
-printf "%34s : " $a
-grep "Version=" $a | sed -e "s/Version=\([0-9\.]*\)/\1/g" 
-done
-
-# Spec files
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/Version: [0-9a-z\.]\+/Version: $MAJOR.$MINOR.$PATCH/g" extra/*/*.spec
-fi
-cd extra
-for a in */*.spec; do
-printf "%34s : " $a
-grep "Version:" $a | sed -e 's/Version: \([0-9a-z\.]\+\)/\1/g'
-done
-cd ../
-
-# Debian build files
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/\(jv[a-z]*\) (\([0-9\.]\+\))/\1 ($MAJOR.$MINOR.$PATCH)/g" extra/*/*/changelog
-fi
-cd extra
-for a in */*/changelog; do
-  ver=`grep 'jv[a-z]* (' $a | sed -e 's/jv[a-z]* (\([0-9\.]\+\).*/\1/g'`
-  printf  '%34s : %s\n' $a $ver
-done
-cd ../
-
-# OSX build files
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/APP_VERSION=\"\([0-9a-z\.]\+\)\"/APP_VERSION=\"$MAJOR.$MINOR.$PATCH\"/g" extra/OSX/*.dmginfo
-fi
-cd extra
-for a in OSX/*.dmginfo; do
-  printf "%34s : " $a
-  grep 'APP_VERSION=' $a | sed -e 's/APP_VERSION=\"\([0-9a-z\.]\+\)\"/\1/g'
-done
-cd ../
-
 # Windows build files
 if [ "$TEST" = "false" ]
 then
-  sed -i -e "s/#define MyAppVersion \"[0-9\.]*\"/#define MyAppVersion \"$MAJOR.$MINOR.$PATCH\"/g" -e "s/OutputBaseFilename=\([A-Za-z]*\)-[0-9\.]*/OutputBaseFilename=\1-$MAJOR.$MINOR.$PATCH/g" extra/Win32/*.iss
+  sed -i -e "s/#define MyAppVersion \"[0-9\.]*\"/#define MyAppVersion \"$MAJOR.$MINOR.$PATCH\"/g" ci/windows/*.iss
 fi
-cd extra
-for a in Win32/*iss; do
+for a in ci/windows/*iss; do
   printf "%24s (Version) : " $a
   grep 'define MyAppVersion' $a | sed -e 's/#define MyAppVersion \"\([0-9\.]*\)\"/\1/g'
-  printf "%23s (Filename) : " $a
-  grep 'OutputBaseFilename' $a | sed -e 's/OutputBaseFilename=\([A-Za-z]*\)-\([0-9\.]*\)/\2/g'
 done
-cd ../
-
-# AppImage build files
-if [ "$TEST" = "false" ]
-then
-  sed -i -e "s/Version=[0-9\.]*/Version=$MAJOR.$MINOR.$PATCH/g" extra/appimage/usr/share/applications/com.projectaten.*.desktop
-fi
-for a in extra/appimage/usr/share/applications/com.projectaten.*.desktop; do
-  printf "%34s : " $a
-  grep 'Version=' $a | sed -e 's/Version=\([0-9\.]*\)/\1/g'
-done
-
-exit 0
-
