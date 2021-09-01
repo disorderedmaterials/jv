@@ -1,15 +1,9 @@
-trigger: none
-
-pr:
-  autoCancel: true
+trigger:
   branches:
     include:
-      - "*"
-  paths:
-    exclude:
-    - .azure-pipelines/continuous.yml
-    - .azure-pipelines/release.yml
-    - README.md
+      - release/*
+
+pr: none
 
 stages:
   - stage: 'build'
@@ -59,3 +53,6 @@ stages:
               PathtoPublish: "packages/"
               ArtifactName: 'osx-artifacts'
             displayName: 'Publish OSX Artifacts'
+
+  # Create Release
+  - template: templates/create-release.yml
