@@ -221,6 +221,10 @@ add_executable(${target_name}  MACOSX_BUNDLE
 	${SRCS}/main.cpp 
 )
 
+if(BUILD_SZIP)
+  add_dependencies(${target_name} szip)
+endif(BUILD_SZIP)
+
 # Link line
 link_directories (${LIBRARY_OUTPUT_PATH})
 IF(WIN32)
