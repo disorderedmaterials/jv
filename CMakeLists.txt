@@ -22,7 +22,7 @@ set(DESCRIPTION ${target_name})
 set(AUTHOR "Tristan Youngs")
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "8")
-set(VERSION_PATCH "4")
+set(VERSION_PATCH "6")
 
 # Build release version
 set(CMAKE_BUILD_TYPE "Release")

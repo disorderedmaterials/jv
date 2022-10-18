@@ -22,7 +22,7 @@
 #ifndef JOURNALVIEWER_VERSION_H
 #define JOURNALVIEWER_VERSION_H
 
-#define JVVERSION "1.8.4"
+#define JVVERSION "1.8.6"
 #define JVURL "http://www.projectaten.net/jv"
 
 #endif

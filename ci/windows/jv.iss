@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "JournalViewer"
-#define MyAppVersion "1.8.4"
+#define MyAppVersion "1.8.6"
 #define MyAppPublisher "Tristan Youngs"
 #define MyAppURL "https://www.projectaten.com/"
 #define MyAppExeName "JournalViewer.exe"
