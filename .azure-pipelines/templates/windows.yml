@@ -19,8 +19,7 @@ steps:
     displayName: 'Install Prerequisites'
   - script: |
       python -m pip install aqtinstall
-      python -m aqt list-qt windows desktop --modules 5.15.1 win64_mingw81
-      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_mingw81 -m qt5core qtgui qtwidgets qtprintsupport
+      python -m aqt install --outputdir $(Build.BinariesDirectory)\\Qt ${{ parameters.qtver }} windows desktop win64_mingw81
     displayName: 'Install Qt'
   - powershell: |
       $ErrorActionPreference = 'Stop'
