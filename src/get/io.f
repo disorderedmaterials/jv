@@ -189,7 +189,7 @@ C
         CHARACTER*256 FILNAM
         INTEGER*4 VER1,IFORMAT(10),IVER(10),NDET,NMON,NEFF,
      +  NSEP,NTRG,NSP1,NTC1,ULEN,NPER,DATA_HEADER(32),K
-	INTEGER NLINES, VER9, LLEN, OFFSET, ILLEN
+	INTEGER NLINES, VER9, LLEN, OFFSET, ILLEN,idumaks(1)
         LOGICAL OPENFILE
 	CHARACTER*256 MESS
         COMMON/crpt_SPECIALS/ FILNAM,VER1,IFORMAT,IVER,
@@ -253,8 +253,8 @@ C LOG / Notes section
 		ELSE
 		    NOTESECT = 8
 		ENDIF
-		CALL GETSECT(IFORMAT(NOTESECT), 1, VER9, 49, IERR)
-		VER9 = VAX_TO_LOCAL_INT(VER9)
+		CALL GETSECT(IFORMAT(NOTESECT), 1, idumaks, 49, IERR)
+		VER9 = VAX_TO_LOCAL_INT(idumaks(1))
 C		WRITE(6,*) 'VER9 = ', ver9
 C		write(6,*) 'Dumping section'
 C		do i = 1, 100
@@ -276,15 +276,17 @@ C		    WRITE(6,*) 'Reading ',nlines, 'lines'
                        CVALUE(I)=CTEMP(1:LLEN)
 		    ENDDO
 		ELSEIF (VER9 .EQ. 2) THEN
-		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, NLINES, 49, IERR)
-		    CALL VAX_TO_LOCAL_INTS(NLINES, 1)
+		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, idumaks, 49, IERR)
+		    CALL VAX_TO_LOCAL_INTS(idumaks, 1)
+            nlines=idumaks(1)
 C		    WRITE(6,*) 'Reading ',nlines, 'lines'
 		    OFFSET = IFORMAT(NOTESECT) + 2
 C Each line stored as a line length + data
 		    LENGTH_OUT=MIN(NLINES,LENGTH_IN)
                     DO I=1,LENGTH_OUT
-			CALL GETSECT(OFFSET, 1, LLEN, 49, IERR)
-		        CALL VAX_TO_LOCAL_INTS(LLEN, 1)
+			CALL GETSECT(OFFSET, 1, idumaks, 49, IERR)
+		        CALL VAX_TO_LOCAL_INTS(idumaks, 1)
+                llen=idumaks(1)
 C		        WRITE(6,*) 'Reading line length', llen
 		        ILLEN = (LLEN-1)/4 + 1 
 			CTEMP = ' '
@@ -294,8 +296,9 @@ C			write(6,*) ctemp
 			OFFSET = OFFSET + ILLEN + 1
 		    ENDDO
  		ELSE
-		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, NLINES, 49, IERR)
-		    CALL VAX_TO_LOCAL_INTS(NLINES, 1)
+		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, idumaks, 49, IERR)
+		    CALL VAX_TO_LOCAL_INTS(idumaks, 1)
+            nlines=idumaks(1)
 		    ILLEN=20  ! 20*4 characters per line
 		    LLEN=80
 C		    WRITE(6,*) 'Reading ',nlines, 'lines'
@@ -350,7 +353,7 @@ C
         CHARACTER*(*) RUNID
         CHARACTER*(*) NAME
         INTEGER*4 ERRCODE,LENGTH_IN,LENGTH_OUT,LENGTH,
-     1            IVALUE(LENGTH_IN),IFROM,IERR
+     1            IVALUE(LENGTH_IN),IFROM,IERR,idumaks(1)
 C
 C
         INTEGER*4 I, J, IWORK(256), SENUM, NOTESECT
@@ -678,7 +681,8 @@ C Max Line length in notes section (bytes)
 		    IVALUE(1) = 80
 		ELSE
 C Get number of lines into J
-  		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, J, 49, IERR)
+  		    CALL GETSECT(IFORMAT(NOTESECT)+1, 1, idumaks, 49, IERR)
+            j=idumaks(1)
 		    OFFSET = IFORMAT(NOTESECT) + 2
 C Each line stored as a line length + data
 		    IF (J .LT. 1) THEN
@@ -687,7 +691,8 @@ C Each line stored as a line length + data
 		        IVALUE(1) = 0
 		    ENDIF
                     DO I=1,J
-			CALL GETSECT(OFFSET, 1, LLEN, 49, IERR)
+			CALL GETSECT(OFFSET, 1, idumaks, 49, IERR)
+            llen=idumaks(1)
 			ILLEN = (LLEN - 1)/4 + 1
 			IVALUE(1) = MAX(IVALUE(1), ILLEN*4)
 			OFFSET = OFFSET + ILLEN + 1
@@ -1328,7 +1333,7 @@ C                                      =2  NIN .le.0
 C                                      =4  NOUT .gt.NIN
 C                                      =6  number of channels lt NOUT
 C   Local definitions
-        INTEGER I,J,jref,ITEMP
+        INTEGER I,J,jref,ITEMP,idumaks(1)
         BYTE BTEMP(4)
         EQUIVALENCE (ITEMP,BTEMP)       
 C                               For byte UNpacking
@@ -1388,7 +1393,9 @@ C unpack 4 bytes
                 BTEMP(2)=INDATA(J+2)
                 BTEMP(3)=INDATA(J+3)
                 BTEMP(4)=INDATA(J+4)
-		CALL VAX_TO_LOCAL_INTS(ITEMP, 1)
+        idumaks(1)=itemp
+		CALL VAX_TO_LOCAL_INTS(idumaks, 1)
+        itemp=idumaks(1)
                 J=J+4
             ENDIF
 C update current value
