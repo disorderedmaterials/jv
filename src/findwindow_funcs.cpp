@@ -43,6 +43,8 @@ bool FindWindow::refresh()
 	ui.CountLabel->setText("Matched " + QString::number(jvParent_.nFindMatches()));
 
 	refreshing_ = false;
+
+	return true;
 }
 
 // Search text changed

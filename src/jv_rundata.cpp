@@ -598,6 +598,8 @@ int JournalViewer::find(QString text, JournalViewer::SearchStyle style, bool cas
 
 		if (item->text().contains(findText_)) findMatches_.add(n);
 	}
+
+	return findMatches_.nItems();
 }
 
 // Return current number of find matches
