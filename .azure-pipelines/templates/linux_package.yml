@@ -1,7 +1,3 @@
-parameters:
-  - name: qtver
-    default: 515
-
 steps:
   - bash: |
       set -ex
@@ -20,9 +16,6 @@ steps:
     displayName: 'Download linuxdeploy Tools'
   - bash: |
       set -ex
-      # Set environment vars to locate Qt
-      QT_BASE_DIR="/opt/qt${{ parameters.qtver }}"
-      export PATH=$QT_BASE_DIR/bin:$PATH
       # Extract the version from the source
       export VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
       # Run on the targets
