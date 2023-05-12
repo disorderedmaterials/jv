@@ -43,7 +43,7 @@ stages:
           - bash: |
               set -ex
               VERSION=`grep "#define JVVERSION" src/version.h | sed "s/.*\"\(.*\)\"/\1/g"`
-              ./update-release -r disorderedmaterials/jv -t ${VERSION} -n "${VERSION}" -f ReleaseNotes.md $(System.ArtifactsDirectory)/linux-artifacts/*AppImage $(System.ArtifactsDirectory)/windows-artifacts/*.exe $(System.ArtifactsDirectory)/windows-artifacts/*.zip $(System.ArtifactsDirectory)/osx-artifacts/*dmg
+              ./update-release -r disorderedmaterials/jv -t ${VERSION} -n "${VERSION}" -e -f ReleaseNotes.md $(System.ArtifactsDirectory)/linux-artifacts/*AppImage $(System.ArtifactsDirectory)/windows-artifacts/*.exe $(System.ArtifactsDirectory)/windows-artifacts/*.zip $(System.ArtifactsDirectory)/osx-artifacts/*dmg
             condition: eq('${{ parameters.continuous }}', false)
             env:
               GITHUB_TOKEN: $(REPO_SECRET)
