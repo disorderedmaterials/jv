@@ -13,7 +13,7 @@ steps:
       set -ex
       # -- General
       sudo apt-get update -q
-      sudo apt-get install antlr4 ninja-build python3-setuptools uuid uuid-dev
+      sudo apt-get install antlr4 ninja-build python3-setuptools uuid uuid-dev libfuse2
       # -- Qt
       sudo apt-get install qtbase5-dev libqt5svg5-dev qt5-image-formats-plugins -y
     displayName: 'Install Prerequisites'
