@@ -46,6 +46,7 @@ Source: "JournalViewer.ico"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#MinGWLibDir}\libgcc_s_seh-1.dll"; DestDir: "{app}\bin"
 Source: "{#MinGWLibDir}\libstdc++-6.dll"; DestDir: "{app}\bin"
 Source: "{#MinGWLibDir}\libwinpthread-1.dll"; DestDir: "{app}\bin"
+Source: "{#MinGWLibDir}\libgfortran-5.dll"; DestDir: "{app}\bin"
 Source: "{#MinGWLibDir}\libquadmath-0.dll"; DestDir: "{app}\bin"
 Source: "{#QtDir}\bin\Qt5Gui.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#QtDir}\bin\Qt5Core.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
