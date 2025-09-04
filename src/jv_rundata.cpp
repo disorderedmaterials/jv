@@ -236,6 +236,10 @@ void JournalViewer::updateDataTable()
 				case (RunProperty::RBNumber):
 					item = new TTableWidgetItem(rd, rd->propertyAsString(rp->type()), TTableWidgetItem::IntegerSort);
 					break;
+				case (RunProperty::ProtonCharge):
+				case (RunProperty::TotalMEvents):
+					item = new TTableWidgetItem(rd, rd->propertyAsString(rp->type()), TTableWidgetItem::DoubleSort);
+					break;
 				case (RunProperty::Duration):
 					item = new TTableWidgetItem(rd, rd->propertyAsString(rp->type()), TTableWidgetItem::DurationSort);
 					break;

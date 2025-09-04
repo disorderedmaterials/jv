@@ -101,8 +101,6 @@ add_library(main
   ${jv_MOC_SRCS}
 )
 
-add_dependencies(main HDF5)
-
 # Compile libget
 if(NOT EXTERNAL_LIBGET)
 add_subdirectory(get)
