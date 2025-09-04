@@ -37,7 +37,7 @@ void JournalViewer::setDefaultSettings()
 	
 	// Journal Access / Instrument
 	journalDirectory_ = QDir::currentPath();
-	journalUrl_ = "http://data.isis.rl.ac.uk/journals/";
+	journalUrl_ = "http://journals.isis.cclrc.ac.uk/jv/";
 #ifdef _WIN32
 	dataDirectory_ = "\\\\isis\\inst$\\";
 	validDataDirectory_ = true;
@@ -134,7 +134,7 @@ void JournalViewer::retrieveSettings()
 
 	// Program Settings
 	if (settings.contains("JournalDirectory")) journalDirectory_ = settings.value("JournalDirectory").toString();
-	if (settings.contains("JournalUrl")) journalUrl_ = settings.value("JournalUrl").toString();
+	//if (settings.contains("JournalUrl")) journalUrl_ = settings.value("JournalUrl").toString();
 	if (settings.contains("DataDirectory")) setDataDirectory(settings.value("DataDirectory").toString());
 	if (settings.contains("UserDataDirectory")) setUserDataDirectory(settings.value("UserDataDirectory").toString());
 	if (settings.contains("JournalAccessType")) journalAccessType_ = (JournalViewer::JournalAccess) settings.value("JournalAccessType").toInt();
