@@ -1,4 +1,5 @@
 # Root CMakeLists for JournalViewer / JournalViewerLite
+cmake_minimum_required(VERSION 3.10)
 
 # Before we do anything else, set the target name
 if(WIN32 OR APPLE)
@@ -160,6 +161,10 @@ else(BUILD_HDF)
     include_directories(${HDF5_INCLUDE_DIRS})
   endif(LOCAL_STATIC_HDF5)
 endif(BUILD_HDF)
+
+find_package(HDF5 REQUIRED)
+list(APPEND LINK_LIBS "${HDF5_CXX_LIBRARIES}" "${HDF5_C_LIBRARIES}" "${HDF5_Fortran_LIBRARIES}")
+include_directories(${HDF5_INCLUDE_DIRS})
 
 # Set necessary include directories
 if(BUILD_HDF)
